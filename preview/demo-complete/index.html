@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>完成イメージ — さくら歯科クリニック</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/base/variables.css">
+  <link rel="stylesheet" href="../../assets/css/base/reset.css">
+  <style>
+    .hub { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px var(--section-px); background: var(--text); color: #fff; text-align: center; }
+    .hub__badge { font-family: var(--font-display); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--warm); border: 1px solid rgba(200,149,108,0.4); padding: 6px 20px; border-radius: var(--radius-pill); margin-bottom: 24px; }
+    .hub__title { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .hub__title span { color: var(--accent); }
+    .hub__sub { font-size: 0.92rem; color: rgba(255,255,255,0.6); margin-bottom: 48px; max-width: 560px; line-height: 1.9; }
+    .hub__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 960px; width: 100%; }
+    .hub__card { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: var(--radius-md); overflow: hidden; text-decoration: none; color: #fff; transition: all 0.4s var(--ease); }
+    .hub__card:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(14,138,125,0.2); }
+    .hub__card-img { aspect-ratio: 16/10; overflow: hidden; }
+    .hub__card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .hub__card:hover .hub__card-img img { transform: scale(1.05); }
+    .hub__card-body { padding: 20px; }
+    .hub__card-label { font-family: var(--font-display); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .hub__card-title { font-size: 1.05rem; font-weight: 700; margin-bottom: 4px; }
+    .hub__card-desc { font-size: 0.78rem; color: rgba(255,255,255,0.5); }
+    .hub__back { margin-top: 48px; font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+    .hub__back a { color: var(--accent); }
+    @media (max-width: 768px) { .hub__grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="hub">
+    <div class="hub__badge">Complete Demo</div>
+    <h1 class="hub__title">テキスト・写真<span>反映済み</span>の<br>完成イメージ</h1>
+    <p class="hub__sub">原稿テキストと写真が実際に入った状態のデモです。<br>「さくら歯科クリニック」という架空のクリニックで、完成品のクオリティをご確認いただけます。</p>
+    <div class="hub__grid">
+      <a href="about.html" class="hub__card">
+        <div class="hub__card-img"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&h=500&fit=crop" alt="クリニック受付" loading="lazy"></div>
+        <div class="hub__card-body">
+          <p class="hub__card-label">About</p>
+          <h2 class="hub__card-title">医院紹介</h2>
+          <p class="hub__card-desc">コンセプト・院長メッセージ・設備・アクセス</p>
+        </div>
+      </a>
+      <a href="treatment.html" class="hub__card">
+        <div class="hub__card-img"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&h=500&fit=crop" alt="診療" loading="lazy"></div>
+        <div class="hub__card-body">
+          <p class="hub__card-label">Treatment</p>
+          <h2 class="hub__card-title">診療案内</h2>
+          <p class="hub__card-desc">6メニュー・診療の流れ・痛くない治療</p>
+        </div>
+      </a>
+      <a href="staff.html" class="hub__card">
+        <div class="hub__card-img"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=800&h=500&fit=crop" alt="スタッフ" loading="lazy"></div>
+        <div class="hub__card-body">
+          <p class="hub__card-label">Staff</p>
+          <h2 class="hub__card-title">スタッフ紹介</h2>
+          <p class="hub__card-desc">院長・歯科医師・衛生士チーム</p>
+        </div>
+      </a>
+    </div>
+    <p class="hub__back"><a href="../demo.html">← 仕組み紹介に戻る</a> ｜ <a href="../index.html">テンプレート一覧</a></p>
+  </div>
+</body>
+</html>
