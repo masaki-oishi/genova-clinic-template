@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "generate": "node build.js",
-    "generate:watch": "node build.js --watch"
+    "drive": "node build.js --drive",
+    "wp": "node build.js --wp",
+    "preview": "node generate-preview.js"
   },
   "dependencies": {
     "googleapis": "^130.0.0",

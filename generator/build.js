@@ -171,6 +171,12 @@ async function main() {
   // WordPress用の設定ファイルも出力
   await generateWpConfig(outputDir, config.clinic);
 
+  // ── WPテーマパッケージ出力 ──
+  if (args.wp || args.drive) {
+    console.log('\n📦 WordPressテーマパッケージを生成中...');
+    await generateWpPackage(outputDir, config);
+  }
+
   // Driveモード: 一時ファイルのクリーンアップ
   if (args.drive) {
     await cleanup(tempDir);
@@ -178,7 +184,11 @@ async function main() {
 
   console.log('\n✅ 生成完了!\n');
   console.log(`出力先: ${outputDir}`);
-  console.log('WordPress管理画面 > 外観 > カスタマイズ でクリニック情報を設定してください\n');
+  if (args.wp || args.drive) {
+    console.log(`WPテーマ: ${outputDir}/wp-theme/`);
+    console.log(`ZIP: ${outputDir}/wp-theme.zip`);
+    console.log('\nWordPress管理画面 > 外観 > テーマ > 新規追加 > テーマのアップロード でzipをアップロードしてください\n');
+  }
 }
 
 /**
@@ -336,6 +346,108 @@ async function initConfig() {
   await fs.writeFile(outPath, JSON.stringify(template, null, 2), 'utf-8');
   console.log(`✅ config-new.json を生成しました`);
   console.log('クリニック情報と Google Docs ID を記入してから build.js を再実行してください');
+}
+
+/**
+ * WordPressテーマとしてパッケージ化
+ * output/wp-theme/ にテーマ一式をコピーし、zipも生成
+ */
+async function generateWpPackage(outputDir, config) {
+  const themeDir = path.join(outputDir, 'wp-theme');
+  const rootDir = path.resolve(__dirname, '..');
+
+  // テーマディレクトリ作成
+  await fs.mkdir(themeDir, { recursive: true });
+
+  // コピー対象
+  const filesToCopy = [
+    'style.css',
+    'functions.php',
+    'header.php',
+    'footer.php',
+  ];
+
+  const dirsToCopy = [
+    'includes',
+    'templates',
+    'assets',
+  ];
+
+  // ファイルコピー
+  for (const file of filesToCopy) {
+    const src = path.join(rootDir, file);
+    const dest = path.join(themeDir, file);
+    try {
+      await fs.copyFile(src, dest);
+    } catch {}
+  }
+
+  // ディレクトリコピー（再帰）
+  for (const dir of dirsToCopy) {
+    const src = path.join(rootDir, dir);
+    const dest = path.join(themeDir, dir);
+    try {
+      await copyDir(src, dest);
+    } catch {}
+  }
+
+  // 生成済みPHPも templates/ にコピー
+  const generatedFiles = await fs.readdir(outputDir);
+  for (const file of generatedFiles) {
+    if (file.endsWith('.php') && file.startsWith('page-')) {
+      await fs.copyFile(
+        path.join(outputDir, file),
+        path.join(themeDir, 'templates', file)
+      );
+    }
+  }
+
+  // wp-customizer-settings.json もコピー
+  try {
+    await fs.copyFile(
+      path.join(outputDir, 'wp-customizer-settings.json'),
+      path.join(themeDir, 'wp-customizer-settings.json')
+    );
+  } catch {}
+
+  // screenshot.png（プレースホルダー）
+  // WPテーマに必要だが、今は空テキストファイルで代替
+  try {
+    await fs.access(path.join(themeDir, 'screenshot.png'));
+  } catch {
+    // screenshot.pngがなければ注意書きファイルを作成
+    await fs.writeFile(
+      path.join(themeDir, 'screenshot-README.txt'),
+      'WordPress管理画面のテーマ一覧に表示されるサムネイルです。\n1200x900px の screenshot.png をここに配置してください。',
+      'utf-8'
+    );
+  }
+
+  // ZIP生成（Node.js標準でtar.gzの方が簡単だが、WPはzipなのでchild_processでzip）
+  const { execSync } = await import('child_process');
+  const zipPath = path.join(outputDir, 'wp-theme.zip');
+  try {
+    execSync(`cd "${outputDir}" && zip -r wp-theme.zip wp-theme/ -x "*.DS_Store"`, { stdio: 'pipe' });
+    const stat = await fs.stat(zipPath);
+    console.log(`  ✓ wp-theme.zip (${(stat.size / 1024).toFixed(0)}KB)`);
+  } catch {
+    console.log('  ⚠ zip生成スキップ（zipコマンドが利用できません）');
+    console.log(`  テーマフォルダ: ${themeDir}`);
+  }
+}
+
+async function copyDir(src, dest) {
+  await fs.mkdir(dest, { recursive: true });
+  const entries = await fs.readdir(src, { withFileTypes: true });
+  for (const entry of entries) {
+    const srcPath = path.join(src, entry.name);
+    const destPath = path.join(dest, entry.name);
+    if (entry.isDirectory()) {
+      await copyDir(srcPath, destPath);
+    } else {
+      await fs.copyFile(srcPath, destPath);
+    }
+  }
 }
 
 function escapeHtml(str) {
