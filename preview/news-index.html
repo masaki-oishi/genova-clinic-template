@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お知らせ｜さくら歯科クリニック</title>
+  <meta name="description" content="さくら歯科クリニックからのお知らせ一覧です。休診情報、新しい取り組み、メディア掲載、採用情報などをご案内します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base/variables.css">
+  <link rel="stylesheet" href="../assets/css/base/reset.css">
+  <link rel="stylesheet" href="../assets/css/layout/header.css">
+  <link rel="stylesheet" href="../assets/css/layout/footer.css">
+  <link rel="stylesheet" href="../assets/css/components/components.css">
+  <style>
+    /* ============================================================
+       NEWS INDEX — Inline Styles
+       ============================================================ */
+
+    /* Year Filter Tabs */
+    .news-filter {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      max-width: var(--content-w, 1080px);
+      margin: 0 auto 40px;
+      padding: 0 var(--gutter, 24px);
+    }
+    .news-filter__btn {
+      display: inline-block;
+      padding: 10px 24px;
+      border: 1.5px solid var(--border, #ddd);
+      border-radius: 100px;
+      background: #fff;
+      color: var(--text, #333);
+      font-size: 0.88rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-decoration: none;
+    }
+    .news-filter__btn:hover {
+      border-color: var(--accent, #1a73b8);
+      color: var(--accent, #1a73b8);
+    }
+    .news-filter__btn.is-active {
+      background: var(--accent, #1a73b8);
+      border-color: var(--accent, #1a73b8);
+      color: #fff;
+    }
+
+    /* News List */
+    .news-list {
+      max-width: var(--content-w, 1080px);
+      margin: 0 auto;
+      padding: 0 var(--gutter, 24px);
+    }
+    .news-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border, #eee);
+      text-decoration: none;
+      color: inherit;
+      transition: background 0.15s ease;
+    }
+    .news-item:first-child {
+      border-top: 1px solid var(--border, #eee);
+    }
+    .news-item:hover {
+      background: var(--bg-sub, #f8f9fa);
+    }
+    .news-item__date {
+      flex-shrink: 0;
+      width: 110px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-light, #666);
+      letter-spacing: 0.03em;
+    }
+    .news-item__badge {
+      flex-shrink: 0;
+      display: inline-block;
+      padding: 3px 12px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      line-height: 1.6;
+    }
+    .news-item__badge--info {
+      background: #e8f0fe;
+      color: #1a5fb4;
+    }
+    .news-item__badge--closed {
+      background: #fde8e8;
+      color: #c01c28;
+    }
+    .news-item__badge--media {
+      background: #fff3e0;
+      color: #b35900;
+    }
+    .news-item__badge--recruit {
+      background: #e6f4ea;
+      color: #1a7f37;
+    }
+    .news-item__title {
+      flex: 1;
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.6;
+      color: var(--text, #333);
+    }
+    .news-item:hover .news-item__title {
+      color: var(--accent, #1a73b8);
+    }
+    .news-item__arrow {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted, #aaa);
+      transition: transform 0.2s ease;
+    }
+    .news-item:hover .news-item__arrow {
+      transform: translateX(3px);
+      color: var(--accent, #1a73b8);
+    }
+
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      margin-top: 48px;
+      padding: 0 var(--gutter, 24px);
+    }
+    .pagination__item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 42px;
+      height: 42px;
+      padding: 0 8px;
+      border: 1.5px solid var(--border, #ddd);
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text, #333);
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .pagination__item:hover {
+      border-color: var(--accent, #1a73b8);
+      color: var(--accent, #1a73b8);
+    }
+    .pagination__item.is-active {
+      background: var(--accent, #1a73b8);
+      border-color: var(--accent, #1a73b8);
+      color: #fff;
+    }
+    .pagination__item.is-disabled {
+      opacity: 0.35;
+      pointer-events: none;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .news-item {
+        flex-wrap: wrap;
+        gap: 6px 12px;
+        padding: 16px 0;
+      }
+      .news-item__date {
+        width: auto;
+        font-size: 0.82rem;
+      }
+      .news-item__title {
+        width: 100%;
+        flex: unset;
+        font-size: 0.9rem;
+      }
+      .news-item__arrow {
+        display: none;
+      }
+      .news-filter {
+        margin-bottom: 28px;
+      }
+      .news-filter__btn {
+        padding: 8px 18px;
+        font-size: 0.82rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="hd" id="hd">
+  <a href="index.html" class="hd-logo">さくら歯科</a>
+  <div class="hd-tel"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><a href="tel:0312345678">03-1234-5678</a><span class="hd-tel-sub">月〜土 9:00〜18:30</span></div></div>
+  <nav class="hd-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a><a href="#" class="hd-cta">Web予約</a></nav>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</header>
+<div class="mobile-nav" id="mobile-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
+
+<nav class="breadcrumb"><a href="index.html">Top</a> &mdash; <span>お知らせ</span></nav>
+
+<!-- ============================================================
+     PAGE HERO
+     ============================================================ -->
+<section class="pg-hero">
+  <div class="inner rv">
+    <h1 class="pg-hero__title"><small>News</small>お知らせ</h1>
+  </div>
+</section>
+
+<!-- ============================================================
+     YEAR FILTER
+     ============================================================ -->
+<section class="sec sec--white" style="padding-bottom:0;">
+  <div class="news-filter">
+    <button class="news-filter__btn is-active" type="button">すべて</button>
+    <button class="news-filter__btn" type="button">2026年</button>
+    <button class="news-filter__btn" type="button">2025年</button>
+  </div>
+</section>
+
+<!-- ============================================================
+     NEWS LIST
+     ============================================================ -->
+<section class="sec sec--white" style="padding-top:0;">
+  <div class="news-list">
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2026.04.10</time>
+      <span class="news-item__badge news-item__badge--closed">休診のご案内</span>
+      <span class="news-item__title">ゴールデンウィーク休診のお知らせ</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2026.03.15</time>
+      <span class="news-item__badge news-item__badge--info">お知らせ</span>
+      <span class="news-item__title">新しい歯科用CTを導入しました</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2026.02.28</time>
+      <span class="news-item__badge news-item__badge--media">メディア掲載</span>
+      <span class="news-item__title">「渋谷区おすすめ歯科医院」に掲載されました</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2026.02.01</time>
+      <span class="news-item__badge news-item__badge--recruit">採用情報</span>
+      <span class="news-item__title">歯科衛生士を募集しています</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2025.12.10</time>
+      <span class="news-item__badge news-item__badge--closed">休診のご案内</span>
+      <span class="news-item__title">年末年始の休診日のお知らせ</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2025.11.20</time>
+      <span class="news-item__badge news-item__badge--info">お知らせ</span>
+      <span class="news-item__title">ホームページをリニューアルしました</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2025.07.25</time>
+      <span class="news-item__badge news-item__badge--closed">休診のご案内</span>
+      <span class="news-item__title">夏季休診のお知らせ</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2025.06.10</time>
+      <span class="news-item__badge news-item__badge--info">お知らせ</span>
+      <span class="news-item__title">口腔内スキャナーを導入しました</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2025.05.01</time>
+      <span class="news-item__badge news-item__badge--recruit">採用情報</span>
+      <span class="news-item__title">歯科助手（パート）を募集しています</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <a href="news-single.html" class="news-item">
+      <time class="news-item__date">2025.04.15</time>
+      <span class="news-item__badge news-item__badge--info">お知らせ</span>
+      <span class="news-item__title">インフルエンザ予防接種のご案内</span>
+      <svg class="news-item__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </a>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <span class="pagination__item is-disabled">&laquo;</span>
+      <a href="#" class="pagination__item is-active">1</a>
+      <a href="#" class="pagination__item">2</a>
+      <a href="#" class="pagination__item">3</a>
+      <a href="#" class="pagination__item">&raquo;</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA BANNER
+     ============================================================ -->
+<section class="cta-banner rv">
+  <div class="container">
+    <p class="cta-banner__title">まずはお気軽にご相談ください</p>
+    <p class="cta-banner__text">初診の方もご予約いただけます。お電話またはWebからお問い合わせください。</p>
+    <div class="btn-group btn-group--center">
+      <a href="#" class="btn btn--primary btn--lg">Web予約はこちら</a>
+      <a href="tel:0312345678" class="btn btn--outline">03-1234-5678</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="ft">
+  <div class="container">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <span class="hd-logo">さくら歯科</span>
+        <p>〒150-0001<br>東京都渋谷区神宮前1-2-3<br>さくらビル2F</p>
+      </div>
+      <div>
+        <h4>Menu</h4>
+        <div class="ft-links">
+          <a href="about.html">医院紹介</a>
+          <a href="treatment.html">診療案内</a>
+          <a href="staff.html">スタッフ</a>
+          <a href="access.html">アクセス</a>
+          <a href="price.html">料金表</a>
+        </div>
+      </div>
+      <div>
+        <h4>診療時間</h4>
+        <dl class="ft-info">
+          <dt>診療時間</dt><dd>月〜金 9:00〜12:30 / 14:00〜18:30<br>土 9:00〜12:30 / 14:00〜17:00</dd>
+          <dt>休診日</dt><dd>木曜・日曜・祝日</dd>
+        </dl>
+      </div>
+      <div>
+        <h4>ご予約</h4>
+        <div class="ft-links">
+          <a href="#">Web予約</a>
+          <a href="#">LINE予約</a>
+          <a href="tel:0312345678">お電話</a>
+        </div>
+      </div>
+    </div>
+    <div class="ft-btm">
+      <span>&copy; 2026 さくら歯科クリニック</span>
+      <span>Powered by GENOVA</span>
+    </div>
+  </div>
+</footer>
+<div class="sp-cta"><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
+
+<script src="../assets/js/modules/main.js"></script>
+<script>
+  // Year filter tab toggle
+  document.querySelectorAll('.news-filter__btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelector('.news-filter__btn.is-active').classList.remove('is-active');
+      this.classList.add('is-active');
+    });
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ブログ｜さくら歯科クリニック</title>
+  <meta name="description" content="さくら歯科クリニックのブログ。虫歯予防や歯周病、審美歯科など、歯とお口の健康に役立つ情報を発信しています。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base/variables.css">
+  <link rel="stylesheet" href="../assets/css/base/reset.css">
+  <link rel="stylesheet" href="../assets/css/layout/header.css">
+  <link rel="stylesheet" href="../assets/css/layout/footer.css">
+  <link rel="stylesheet" href="../assets/css/components/components.css">
+  <style>
+    /* Blog Layout */
+    .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 48px var(--section-px) 80px; }
+
+    /* Blog Cards Grid */
+    .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .blog-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: all 0.3s var(--ease); text-decoration: none; color: inherit; display: block; }
+    .blog-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .blog-card__thumb { aspect-ratio: 16/10; background: var(--bg-sub); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .blog-card__thumb span { font-size: 0.75rem; color: var(--text-muted); }
+    .blog-card__body { padding: 20px; }
+    .blog-card__meta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+    .blog-card__cat { font-size: 0.68rem; font-weight: 600; color: var(--accent); background: var(--accent-light); padding: 3px 10px; border-radius: var(--radius-pill); white-space: nowrap; }
+    .blog-card__date { font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-display); }
+    .blog-card__title { font-size: 0.95rem; font-weight: 700; line-height: 1.5; margin-bottom: 8px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .blog-card__excerpt { font-size: 0.8rem; color: var(--text-light); line-height: 1.7; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    /* Pagination */
+    .pagination { display: flex; justify-content: center; align-items: center; gap: 6px; margin-top: 48px; }
+    .pagination a, .pagination span { display: flex; align-items: center; justify-content: center; min-width: 40px; height: 40px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-size: 0.82rem; font-weight: 500; text-decoration: none; color: var(--text); transition: all 0.2s var(--ease); padding: 0 8px; }
+    .pagination a:hover { border-color: var(--accent); color: var(--accent); }
+    .pagination .current { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .pagination .dots { border: none; color: var(--text-muted); min-width: 24px; }
+
+    /* Sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 32px; }
+    .sidebar-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; }
+    .sidebar-box__title { font-size: 0.88rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+    .sidebar-box__title::before { content: ''; width: 3px; height: 16px; background: var(--accent); border-radius: 2px; }
+
+    /* Search */
+    .sidebar-search { display: flex; gap: 0; }
+    .sidebar-search input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm) 0 0 var(--radius-sm); font-size: 0.82rem; outline: none; transition: border-color 0.2s; background: var(--bg); color: var(--text); }
+    .sidebar-search input:focus { border-color: var(--accent); }
+    .sidebar-search button { padding: 10px 16px; background: var(--accent); color: #fff; border: none; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .sidebar-search button:hover { opacity: 0.85; }
+
+    /* Category List */
+    .sidebar-cat-list { list-style: none; padding: 0; margin: 0; }
+    .sidebar-cat-list li { border-bottom: 1px solid var(--border-light); }
+    .sidebar-cat-list li:last-child { border-bottom: none; }
+    .sidebar-cat-list a { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: 0.82rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .sidebar-cat-list a:hover { color: var(--accent); }
+    .sidebar-cat-list a::after { content: '\203A'; color: var(--text-muted); font-size: 1rem; }
+
+    /* Archive List */
+    .sidebar-archive-list { list-style: none; padding: 0; margin: 0; }
+    .sidebar-archive-list li { border-bottom: 1px solid var(--border-light); }
+    .sidebar-archive-list li:last-child { border-bottom: none; }
+    .sidebar-archive-list a { display: block; padding: 10px 0; font-size: 0.82rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .sidebar-archive-list a:hover { color: var(--accent); }
+
+    /* Recent Posts */
+    .sidebar-recent { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+    .sidebar-recent li a { display: flex; gap: 12px; text-decoration: none; color: inherit; transition: opacity 0.2s; }
+    .sidebar-recent li a:hover { opacity: 0.7; }
+    .sidebar-recent__thumb { width: 72px; height: 54px; background: var(--bg-sub); border-radius: var(--radius-sm); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .sidebar-recent__thumb span { font-size: 0.55rem; color: var(--text-muted); }
+    .sidebar-recent__body { flex: 1; min-width: 0; }
+    .sidebar-recent__date { font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-display); margin-bottom: 2px; }
+    .sidebar-recent__title { font-size: 0.78rem; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    @media (max-width: 900px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 40px; }
+      .blog-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hd" id="hd">
+  <a href="index.html" class="hd-logo">さくら歯科</a>
+  <div class="hd-tel"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><a href="tel:0312345678">03-1234-5678</a><span class="hd-tel-sub">月〜土 9:00〜18:30</span></div></div>
+  <nav class="hd-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a><a href="#" class="hd-cta">Web予約</a></nav>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</header>
+<div class="mobile-nav" id="mobile-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
+<nav class="breadcrumb"><a href="index.html">Top</a> &mdash; <span>ブログ</span></nav>
+
+<!-- HERO -->
+<section class="pg-hero">
+  <div class="inner rv">
+    <h1 class="pg-hero__title"><small>Blog</small>ブログ</h1>
+  </div>
+</section>
+
+<!-- BLOG LAYOUT -->
+<div class="blog-layout">
+
+  <!-- MAIN -->
+  <main>
+    <div class="blog-grid">
+
+      <a href="blog-single.html" class="blog-card">
+        <div class="blog-card__thumb"><span>16:10 Thumbnail</span></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">虫歯予防</span>
+            <span class="blog-card__date">2026.03.25</span>
+          </div>
+          <h3 class="blog-card__title">正しい歯磨きの方法 — 歯科衛生士が教える5つのポイント</h3>
+          <p class="blog-card__excerpt">毎日の歯磨き、正しくできていますか？歯科衛生士が教える磨き残しを減らすためのブラッシングテクニックをご紹介します。</p>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-card__thumb"><span>16:10 Thumbnail</span></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">歯周病</span>
+            <span class="blog-card__date">2026.03.18</span>
+          </div>
+          <h3 class="blog-card__title">歯周病と全身疾患の関係 — 知っておきたいリスク</h3>
+          <p class="blog-card__excerpt">歯周病は口の中だけの問題ではありません。糖尿病や心疾患との関連など、全身に及ぼす影響について解説します。</p>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-card__thumb"><span>16:10 Thumbnail</span></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">審美歯科</span>
+            <span class="blog-card__date">2026.03.10</span>
+          </div>
+          <h3 class="blog-card__title">ホワイトニングの種類と効果 — 自分に合った方法は？</h3>
+          <p class="blog-card__excerpt">オフィスホワイトニングとホームホワイトニング、どちらが自分に合っている？それぞれのメリット・デメリットを比較します。</p>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-card__thumb"><span>16:10 Thumbnail</span></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">小児歯科</span>
+            <span class="blog-card__date">2026.03.03</span>
+          </div>
+          <h3 class="blog-card__title">子どもの虫歯予防 — 親ができる5つのこと</h3>
+          <p class="blog-card__excerpt">お子さまの歯を虫歯から守るために、ご家庭でできる予防法をわかりやすくまとめました。仕上げ磨きのコツも紹介します。</p>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-card__thumb"><span>16:10 Thumbnail</span></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">インプラント</span>
+            <span class="blog-card__date">2026.02.24</span>
+          </div>
+          <h3 class="blog-card__title">インプラント治療の流れと期間</h3>
+          <p class="blog-card__excerpt">インプラント治療を検討中の方へ。カウンセリングから最終補綴までの流れと、治療にかかる期間を詳しくご説明します。</p>
+        </div>
+      </a>
+
+      <a href="#" class="blog-card">
+        <div class="blog-card__thumb"><span>16:10 Thumbnail</span></div>
+        <div class="blog-card__body">
+          <div class="blog-card__meta">
+            <span class="blog-card__cat">口腔ケア</span>
+            <span class="blog-card__date">2026.02.17</span>
+          </div>
+          <h3 class="blog-card__title">歯ぎしり・食いしばりの原因と対策</h3>
+          <p class="blog-card__excerpt">朝起きると顎が痛い、歯がすり減っている…。歯ぎしり・食いしばりの原因と、ナイトガードなどの対策法を解説します。</p>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination">
+      <span class="dots">&laquo;</span>
+      <span class="current">1</span>
+      <a href="#">2</a>
+      <a href="#">3</a>
+      <span class="dots">...</span>
+      <a href="#">10</a>
+      <a href="#">&raquo;</a>
+    </div>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-box">
+      <h3 class="sidebar-box__title">ブログ内検索</h3>
+      <form class="sidebar-search" action="#" method="get">
+        <input type="search" name="q" placeholder="キーワードを入力">
+        <button type="submit">検索</button>
+      </form>
+    </div>
+
+    <div class="sidebar-box">
+      <h3 class="sidebar-box__title">カテゴリ</h3>
+      <ul class="sidebar-cat-list">
+        <li><a href="#">虫歯予防</a></li>
+        <li><a href="#">歯周病</a></li>
+        <li><a href="#">審美歯科</a></li>
+        <li><a href="#">小児歯科</a></li>
+        <li><a href="#">矯正歯科</a></li>
+        <li><a href="#">インプラント</a></li>
+        <li><a href="#">口腔ケア</a></li>
+        <li><a href="#">お口の豆知識</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-box">
+      <h3 class="sidebar-box__title">アーカイブ</h3>
+      <ul class="sidebar-archive-list">
+        <li><a href="#">2026年3月</a></li>
+        <li><a href="#">2026年2月</a></li>
+        <li><a href="#">2026年1月</a></li>
+        <li><a href="#">2025年12月</a></li>
+        <li><a href="#">2025年11月</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-box">
+      <h3 class="sidebar-box__title">最新の記事</h3>
+      <ul class="sidebar-recent">
+        <li>
+          <a href="blog-single.html">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.03.25</p>
+              <p class="sidebar-recent__title">正しい歯磨きの方法 — 歯科衛生士が教える5つのポイント</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.03.18</p>
+              <p class="sidebar-recent__title">歯周病と全身疾患の関係 — 知っておきたいリスク</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.03.10</p>
+              <p class="sidebar-recent__title">ホワイトニングの種類と効果 — 自分に合った方法は？</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.03.03</p>
+              <p class="sidebar-recent__title">子どもの虫歯予防 — 親ができる5つのこと</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.02.24</p>
+              <p class="sidebar-recent__title">インプラント治療の流れと期間</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </aside>
+
+</div>
+
+<footer class="ft"><div class="container"><div class="ft-grid"><div class="ft-brand"><span class="hd-logo">さくら歯科</span><p>〒150-0001<br>東京都渋谷区神宮前1-2-3</p></div><div><h4>Menu</h4><div class="ft-links"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="price.html">料金表</a></div></div><div><h4>診療時間</h4><dl class="ft-info"><dt>診療時間</dt><dd>月〜金 9:00〜12:30 / 14:00〜18:30<br>土 9:00〜12:30 / 14:00〜17:00</dd><dt>休診日</dt><dd>木曜・日曜・祝日</dd></dl></div><div><h4>ご予約</h4><div class="ft-links"><a href="#">Web予約</a><a href="#">LINE予約</a><a href="tel:0312345678">お電話</a></div></div></div><div class="ft-btm"><span>&copy; 2026 さくら歯科クリニック</span><span>Powered by GENOVA</span></div></div></footer>
+<div class="sp-cta"><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
+<script src="../assets/js/modules/main.js"></script>
+</body>
+</html>

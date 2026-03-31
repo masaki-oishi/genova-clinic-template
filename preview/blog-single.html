@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正しい歯磨きの方法 — 歯科衛生士が教える5つのポイント｜さくら歯科クリニック</title>
+  <meta name="description" content="毎日の歯磨き、正しくできていますか？歯科衛生士が教える磨き残しを減らすためのブラッシングテクニック5つのポイントをご紹介します。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base/variables.css">
+  <link rel="stylesheet" href="../assets/css/base/reset.css">
+  <link rel="stylesheet" href="../assets/css/layout/header.css">
+  <link rel="stylesheet" href="../assets/css/layout/footer.css">
+  <link rel="stylesheet" href="../assets/css/components/components.css">
+  <style>
+    /* Blog Layout */
+    .blog-layout { display: grid; grid-template-columns: 1fr 320px; gap: 48px; max-width: 1200px; margin: 0 auto; padding: 48px var(--section-px) 80px; }
+
+    /* Article Header */
+    .article-header { margin-bottom: 40px; }
+    .article-header__meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .article-header__cat { font-size: 0.72rem; font-weight: 600; color: var(--accent); background: var(--accent-light); padding: 4px 12px; border-radius: var(--radius-pill); }
+    .article-header__date { font-size: 0.78rem; color: var(--text-muted); font-family: var(--font-display); }
+    .article-header__title { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 800; line-height: 1.5; margin-bottom: 24px; letter-spacing: -0.01em; }
+    .article-header__img { aspect-ratio: 16/9; background: var(--bg-sub); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .article-header__img span { font-size: 0.82rem; color: var(--text-muted); }
+
+    /* Table of Contents */
+    .toc { background: var(--bg-sub); border-radius: var(--radius-md); padding: 28px 32px; margin-bottom: 40px; }
+    .toc__title { font-size: 0.92rem; font-weight: 700; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+    .toc__title::before { content: ''; width: 3px; height: 16px; background: var(--accent); border-radius: 2px; }
+    .toc__list { list-style: none; padding: 0; margin: 0; counter-reset: toc; }
+    .toc__list li { counter-increment: toc; }
+    .toc__list li a { display: flex; align-items: baseline; gap: 8px; padding: 8px 0; font-size: 0.85rem; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--border-light); transition: color 0.2s; }
+    .toc__list li:last-child a { border-bottom: none; }
+    .toc__list li a:hover { color: var(--accent); }
+    .toc__list li a::before { content: counter(toc) '.'; font-family: var(--font-display); font-weight: 600; color: var(--accent); min-width: 20px; }
+
+    /* Article Body */
+    .article-body { line-height: 1.9; font-size: 0.92rem; color: var(--text); }
+    .article-body h2 { font-size: 1.3rem; font-weight: 800; margin: 48px 0 20px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); line-height: 1.5; }
+    .article-body h3 { font-size: 1.05rem; font-weight: 700; margin: 32px 0 14px; padding-left: 14px; border-left: 3px solid var(--accent); line-height: 1.5; }
+    .article-body p { margin-bottom: 20px; }
+    .article-body ul, .article-body ol { margin: 16px 0 24px; padding-left: 24px; }
+    .article-body li { margin-bottom: 8px; }
+    .article-body strong { font-weight: 700; color: var(--text); }
+    .article-body blockquote { margin: 24px 0; padding: 20px 24px; background: var(--bg-sub); border-left: 4px solid var(--accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.88rem; color: var(--text-light); }
+    .article-body blockquote p:last-child { margin-bottom: 0; }
+    .article-body .article-img { aspect-ratio: 16/9; background: var(--bg-sub); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; margin: 28px 0; }
+    .article-body .article-img span { font-size: 0.78rem; color: var(--text-muted); }
+    .article-body .point-box { background: linear-gradient(135deg, var(--accent-light), #f0f9ff); border: 1px solid rgba(var(--accent-rgb, 56, 152, 236), 0.2); border-radius: var(--radius-md); padding: 24px; margin: 24px 0; }
+    .article-body .point-box__title { font-size: 0.88rem; font-weight: 700; color: var(--accent); margin-bottom: 10px; }
+
+    /* Author Box */
+    .author-box { display: flex; gap: 20px; align-items: center; background: var(--bg-sub); border-radius: var(--radius-md); padding: 28px; margin: 48px 0 40px; }
+    .author-box__photo { width: 80px; height: 80px; border-radius: 50%; background: var(--border); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .author-box__photo span { font-size: 0.6rem; color: var(--text-muted); }
+    .author-box__body { flex: 1; }
+    .author-box__label { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 4px; }
+    .author-box__name { font-size: 1rem; font-weight: 700; margin-bottom: 2px; }
+    .author-box__role { font-size: 0.78rem; color: var(--text-light); margin-bottom: 8px; }
+    .author-box__bio { font-size: 0.8rem; color: var(--text-light); line-height: 1.7; }
+
+    /* Related Posts */
+    .related { margin-top: 48px; padding-top: 40px; border-top: 1px solid var(--border-light); }
+    .related__title { font-size: 1.1rem; font-weight: 700; margin-bottom: 24px; display: flex; align-items: center; gap: 8px; }
+    .related__title::before { content: ''; width: 3px; height: 18px; background: var(--accent); border-radius: 2px; }
+    .related__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .related-card { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; text-decoration: none; color: inherit; transition: all 0.3s var(--ease); display: block; }
+    .related-card:hover { border-color: var(--accent); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+    .related-card__thumb { aspect-ratio: 16/10; background: var(--bg-sub); display: flex; align-items: center; justify-content: center; }
+    .related-card__thumb span { font-size: 0.65rem; color: var(--text-muted); }
+    .related-card__body { padding: 14px; }
+    .related-card__cat { font-size: 0.62rem; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+    .related-card__title { font-size: 0.82rem; font-weight: 600; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    /* Post Navigation */
+    .post-nav { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--border-light); }
+    .post-nav__item { padding: 16px 20px; border: 1px solid var(--border); border-radius: var(--radius-md); text-decoration: none; color: inherit; transition: all 0.2s var(--ease); }
+    .post-nav__item:hover { border-color: var(--accent); background: var(--bg-sub); }
+    .post-nav__item--next { text-align: right; }
+    .post-nav__label { font-size: 0.68rem; color: var(--text-muted); margin-bottom: 4px; font-family: var(--font-display); font-weight: 500; }
+    .post-nav__title { font-size: 0.82rem; font-weight: 600; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    /* Sidebar */
+    .sidebar { display: flex; flex-direction: column; gap: 32px; }
+    .sidebar-box { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 24px; }
+    .sidebar-box__title { font-size: 0.88rem; font-weight: 700; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 2px solid var(--accent); display: flex; align-items: center; gap: 8px; }
+    .sidebar-box__title::before { content: ''; width: 3px; height: 16px; background: var(--accent); border-radius: 2px; }
+
+    /* Search */
+    .sidebar-search { display: flex; gap: 0; }
+    .sidebar-search input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: var(--radius-sm) 0 0 var(--radius-sm); font-size: 0.82rem; outline: none; transition: border-color 0.2s; background: var(--bg); color: var(--text); }
+    .sidebar-search input:focus { border-color: var(--accent); }
+    .sidebar-search button { padding: 10px 16px; background: var(--accent); color: #fff; border: none; border-radius: 0 var(--radius-sm) var(--radius-sm) 0; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+    .sidebar-search button:hover { opacity: 0.85; }
+
+    /* Category List */
+    .sidebar-cat-list { list-style: none; padding: 0; margin: 0; }
+    .sidebar-cat-list li { border-bottom: 1px solid var(--border-light); }
+    .sidebar-cat-list li:last-child { border-bottom: none; }
+    .sidebar-cat-list a { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; font-size: 0.82rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .sidebar-cat-list a:hover { color: var(--accent); }
+    .sidebar-cat-list a::after { content: '\203A'; color: var(--text-muted); font-size: 1rem; }
+
+    /* Archive List */
+    .sidebar-archive-list { list-style: none; padding: 0; margin: 0; }
+    .sidebar-archive-list li { border-bottom: 1px solid var(--border-light); }
+    .sidebar-archive-list li:last-child { border-bottom: none; }
+    .sidebar-archive-list a { display: block; padding: 10px 0; font-size: 0.82rem; color: var(--text); text-decoration: none; transition: color 0.2s; }
+    .sidebar-archive-list a:hover { color: var(--accent); }
+
+    /* Recent Posts */
+    .sidebar-recent { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+    .sidebar-recent li a { display: flex; gap: 12px; text-decoration: none; color: inherit; transition: opacity 0.2s; }
+    .sidebar-recent li a:hover { opacity: 0.7; }
+    .sidebar-recent__thumb { width: 72px; height: 54px; background: var(--bg-sub); border-radius: var(--radius-sm); flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .sidebar-recent__thumb span { font-size: 0.55rem; color: var(--text-muted); }
+    .sidebar-recent__body { flex: 1; min-width: 0; }
+    .sidebar-recent__date { font-size: 0.68rem; color: var(--text-muted); font-family: var(--font-display); margin-bottom: 2px; }
+    .sidebar-recent__title { font-size: 0.78rem; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+
+    @media (max-width: 900px) {
+      .blog-layout { grid-template-columns: 1fr; gap: 40px; }
+      .related__grid { grid-template-columns: 1fr; }
+      .post-nav { grid-template-columns: 1fr; }
+      .author-box { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="hd" id="hd">
+  <a href="index.html" class="hd-logo">さくら歯科</a>
+  <div class="hd-tel"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><a href="tel:0312345678">03-1234-5678</a><span class="hd-tel-sub">月〜土 9:00〜18:30</span></div></div>
+  <nav class="hd-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a><a href="#" class="hd-cta">Web予約</a></nav>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</header>
+<div class="mobile-nav" id="mobile-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
+<nav class="breadcrumb"><a href="index.html">Top</a> &mdash; <a href="blog-index-thumb.html">ブログ</a> &mdash; <span>正しい歯磨きの方法 — 歯科衛生士が教える5つのポイント</span></nav>
+
+<!-- BLOG LAYOUT -->
+<div class="blog-layout">
+
+  <!-- MAIN -->
+  <main>
+    <article>
+
+      <!-- Article Header -->
+      <div class="article-header">
+        <div class="article-header__meta">
+          <span class="article-header__cat">虫歯予防</span>
+          <span class="article-header__date">2026年3月25日</span>
+        </div>
+        <h1 class="article-header__title">正しい歯磨きの方法 — 歯科衛生士が教える5つのポイント</h1>
+        <div class="article-header__img"><span>Featured Image — 歯ブラシと歯のイメージ写真（16:9）</span></div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="toc">
+        <h2 class="toc__title">目次</h2>
+        <ol class="toc__list">
+          <li><a href="#sec1">なぜ「正しい歯磨き」が大切なのか</a></li>
+          <li><a href="#sec2">ポイント1：歯ブラシの選び方</a></li>
+          <li><a href="#sec3">ポイント2：正しいブラッシングの角度と力加減</a></li>
+          <li><a href="#sec4">ポイント3：磨き残しやすい場所を知る</a></li>
+          <li><a href="#sec5">ポイント4：フロス・歯間ブラシの活用</a></li>
+          <li><a href="#sec6">ポイント5：歯磨き粉の正しい使い方</a></li>
+          <li><a href="#sec7">まとめ</a></li>
+        </ol>
+      </div>
+
+      <!-- Article Body -->
+      <div class="article-body">
+
+        <p>「毎日ちゃんと磨いているのに虫歯になった」——そんな経験はありませんか？実は、日本人の約8割が「磨き残し」を抱えていると言われています。毎日の歯磨きは口腔ケアの基本ですが、正しい方法で行わなければ十分な効果が得られません。</p>
+
+        <p>今回は、当院の歯科衛生士が実際の臨床経験をもとに、<strong>誰でも今日から実践できるブラッシングの5つのポイント</strong>をお伝えします。</p>
+
+        <h2 id="sec1">なぜ「正しい歯磨き」が大切なのか</h2>
+
+        <p>口の中には約700種類、数千億個の細菌が棲んでいます。歯磨きの目的は、これらの細菌が作るプラーク（歯垢）を物理的に除去すること。プラークは食後約8時間で形成され始め、放置すると48時間ほどで石灰化が始まり、歯石へと変化します。</p>
+
+        <p>歯石になってしまうと、ご自宅の歯磨きでは取り除くことができず、歯科医院での専門的なクリーニングが必要になります。つまり、<strong>プラークの段階で確実に除去すること</strong>が、虫歯・歯周病予防の最も効果的な方法なのです。</p>
+
+        <div class="article-img"><span>プラークの形成イメージ図</span></div>
+
+        <h2 id="sec2">ポイント1：歯ブラシの選び方</h2>
+
+        <p>歯ブラシ選びは、正しい歯磨きの第一歩です。以下のポイントを参考にしてください。</p>
+
+        <ul>
+          <li><strong>ヘッドの大きさ：</strong>上の前歯2本分程度の小さめヘッドが操作しやすく、奥歯まで届きやすい</li>
+          <li><strong>毛の硬さ：</strong>歯周病がない方は「ふつう」、歯茎が腫れている方は「やわらかめ」を選択</li>
+          <li><strong>毛先の形状：</strong>ラウンド毛が一般的。テーパー毛は歯周ポケットへのアプローチに向いています</li>
+          <li><strong>交換頻度：</strong>毛先が広がったら交換。目安は約1ヶ月。裏から見て毛がはみ出ていたら交換のサイン</li>
+        </ul>
+
+        <div class="point-box">
+          <p class="point-box__title">歯科衛生士からのワンポイント</p>
+          <p>電動歯ブラシも有効ですが、手磨きの基本ができていないと効果が半減します。まずは手磨きの正しいテクニックを身につけましょう。</p>
+        </div>
+
+        <h2 id="sec3">ポイント2：正しいブラッシングの角度と力加減</h2>
+
+        <p>歯磨きで最も大切なのが、<strong>ブラシの角度</strong>と<strong>力加減</strong>です。</p>
+
+        <h3>バス法（歯周病予防に効果的）</h3>
+
+        <p>歯と歯茎の境目に対して歯ブラシを<strong>45度の角度</strong>であて、小刻みに横に動かします（1〜2本ずつ、1ヶ所20回程度）。歯周ポケットの中のプラークを掻き出すイメージで磨きましょう。</p>
+
+        <h3>スクラブ法（虫歯予防に効果的）</h3>
+
+        <p>歯の表面に対して歯ブラシを<strong>直角（90度）</strong>にあて、小さな円を描くように動かします。お子さまにも教えやすい方法です。</p>
+
+        <div class="article-img"><span>バス法とスクラブ法の角度比較イラスト</span></div>
+
+        <blockquote>
+          <p>力を入れすぎると歯茎を傷つけたり、歯が削れる原因になります。<strong>ペンを持つように軽く握り、150〜200g程度の力</strong>（料理用はかりに歯ブラシを押しつけて確認できます）で十分です。ゴシゴシ磨きは逆効果です。</p>
+        </blockquote>
+
+        <h2 id="sec4">ポイント3：磨き残しやすい場所を知る</h2>
+
+        <p>歯磨きのプロである歯科衛生士でも、100%磨き上げるのは至難の業。まして日常の歯磨きでは、どうしても磨き残しが生じます。まずは<strong>「磨き残しやすいポイント」を意識する</strong>ことが重要です。</p>
+
+        <ol>
+          <li><strong>歯と歯の間（隣接面）</strong> — 歯ブラシだけでは約60%しかプラークを除去できません</li>
+          <li><strong>歯と歯茎の境目（歯頸部）</strong> — 歯周病の原因となるプラークが最も溜まりやすい場所</li>
+          <li><strong>奥歯の噛み合わせ面（咬合面）</strong> — 溝が深く、虫歯が発生しやすい</li>
+          <li><strong>一番奥の歯の裏側</strong> — ブラシが届きにくく、磨き残しの常連</li>
+          <li><strong>歯並びが不揃いな箇所</strong> — 段差にプラークが溜まりやすい</li>
+        </ol>
+
+        <div class="point-box">
+          <p class="point-box__title">染め出し液でセルフチェック</p>
+          <p>ドラッグストアで販売されている「歯垢染色液」を使うと、自分の磨き残しパターンが一目瞭然です。月に1回程度のセルフチェックをおすすめします。</p>
+        </div>
+
+        <h2 id="sec5">ポイント4：フロス・歯間ブラシの活用</h2>
+
+        <p>歯ブラシだけでのプラーク除去率は約60%。<strong>フロスや歯間ブラシを併用することで、除去率は約85〜90%</strong>まで向上します。</p>
+
+        <ul>
+          <li><strong>デンタルフロス：</strong>歯と歯の隙間が狭い箇所に。初心者にはホルダー付きフロスがおすすめ</li>
+          <li><strong>歯間ブラシ：</strong>歯と歯の隙間が広い箇所や、ブリッジの下に。サイズ選びは歯科衛生士に相談を</li>
+        </ul>
+
+        <p>使う順番は「<strong>フロス → 歯ブラシ</strong>」がおすすめ。先にフロスで歯間のプラークをほぐしてから歯ブラシで仕上げると、歯磨き粉のフッ素が歯間にも行き渡りやすくなります。</p>
+
+        <h2 id="sec6">ポイント5：歯磨き粉の正しい使い方</h2>
+
+        <p>歯磨き粉はフッ素配合のもの（1,450ppmF）を選びましょう。フッ素には以下の効果があります。</p>
+
+        <ul>
+          <li>歯の再石灰化を促進する</li>
+          <li>歯質を強化する（耐酸性の向上）</li>
+          <li>細菌の酸産生を抑制する</li>
+        </ul>
+
+        <p>使用量の目安は大人で<strong>約2cm</strong>（歯ブラシの毛先全体に乗る量）。磨いた後のすすぎは<strong>少量の水で1回だけ</strong>。何度もすすいでしまうと、せっかくのフッ素が流れ出てしまいます。</p>
+
+        <div class="article-img"><span>歯磨き粉の適量イメージ写真</span></div>
+
+        <h2 id="sec7">まとめ</h2>
+
+        <p>正しい歯磨きの5つのポイントをおさらいしましょう。</p>
+
+        <ol>
+          <li>自分に合った歯ブラシを選び、1ヶ月で交換する</li>
+          <li>軽い力で、歯と歯茎の境目に45度の角度であてる</li>
+          <li>磨き残しやすい場所を意識して丁寧に磨く</li>
+          <li>フロスや歯間ブラシを併用して除去率を上げる</li>
+          <li>フッ素入り歯磨き粉を使い、すすぎは1回だけ</li>
+        </ol>
+
+        <p>歯磨きは毎日行うものだからこそ、正しい方法を身につければ、その効果は一生続きます。当院では患者さま一人ひとりに合わせたブラッシング指導を行っています。「自分の磨き方に自信がない」という方は、ぜひお気軽にご相談ください。</p>
+
+      </div>
+
+      <!-- Author Box -->
+      <div class="author-box">
+        <div class="author-box__photo"><span>Photo</span></div>
+        <div class="author-box__body">
+          <p class="author-box__label">この記事を書いた人</p>
+          <p class="author-box__name">山田 美咲</p>
+          <p class="author-box__role">歯科衛生士 / 予防歯科担当</p>
+          <p class="author-box__bio">歯科衛生士歴12年。日本歯周病学会認定歯科衛生士。患者さまが自分の歯を一生使えるよう、わかりやすいセルフケア指導を心がけています。</p>
+        </div>
+      </div>
+
+      <!-- Related Posts -->
+      <div class="related">
+        <h2 class="related__title">関連記事</h2>
+        <div class="related__grid">
+          <a href="#" class="related-card">
+            <div class="related-card__thumb"><span>Thumbnail</span></div>
+            <div class="related-card__body">
+              <p class="related-card__cat">歯周病</p>
+              <p class="related-card__title">歯周病と全身疾患の関係 — 知っておきたいリスク</p>
+            </div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card__thumb"><span>Thumbnail</span></div>
+            <div class="related-card__body">
+              <p class="related-card__cat">虫歯予防</p>
+              <p class="related-card__title">フッ素は本当に安全？ — 歯科医が答えるよくある疑問</p>
+            </div>
+          </a>
+          <a href="#" class="related-card">
+            <div class="related-card__thumb"><span>Thumbnail</span></div>
+            <div class="related-card__body">
+              <p class="related-card__cat">口腔ケア</p>
+              <p class="related-card__title">歯ぎしり・食いしばりの原因と対策</p>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Post Navigation -->
+      <div class="post-nav">
+        <a href="#" class="post-nav__item">
+          <p class="post-nav__label">&larr; 前の記事</p>
+          <p class="post-nav__title">子どもの虫歯予防 — 親ができる5つのこと</p>
+        </a>
+        <a href="#" class="post-nav__item post-nav__item--next">
+          <p class="post-nav__label">次の記事 &rarr;</p>
+          <p class="post-nav__title">歯周病と全身疾患の関係 — 知っておきたいリスク</p>
+        </a>
+      </div>
+
+    </article>
+  </main>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="sidebar-box">
+      <h3 class="sidebar-box__title">ブログ内検索</h3>
+      <form class="sidebar-search" action="#" method="get">
+        <input type="search" name="q" placeholder="キーワードを入力">
+        <button type="submit">検索</button>
+      </form>
+    </div>
+
+    <div class="sidebar-box">
+      <h3 class="sidebar-box__title">カテゴリ</h3>
+      <ul class="sidebar-cat-list">
+        <li><a href="#">虫歯予防</a></li>
+        <li><a href="#">歯周病</a></li>
+        <li><a href="#">審美歯科</a></li>
+        <li><a href="#">小児歯科</a></li>
+        <li><a href="#">矯正歯科</a></li>
+        <li><a href="#">インプラント</a></li>
+        <li><a href="#">口腔ケア</a></li>
+        <li><a href="#">お口の豆知識</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-box">
+      <h3 class="sidebar-box__title">アーカイブ</h3>
+      <ul class="sidebar-archive-list">
+        <li><a href="#">2026年3月</a></li>
+        <li><a href="#">2026年2月</a></li>
+        <li><a href="#">2026年1月</a></li>
+        <li><a href="#">2025年12月</a></li>
+        <li><a href="#">2025年11月</a></li>
+      </ul>
+    </div>
+
+    <div class="sidebar-box">
+      <h3 class="sidebar-box__title">最新の記事</h3>
+      <ul class="sidebar-recent">
+        <li>
+          <a href="blog-single.html">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.03.25</p>
+              <p class="sidebar-recent__title">正しい歯磨きの方法 — 歯科衛生士が教える5つのポイント</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.03.18</p>
+              <p class="sidebar-recent__title">歯周病と全身疾患の関係 — 知っておきたいリスク</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.03.10</p>
+              <p class="sidebar-recent__title">ホワイトニングの種類と効果 — 自分に合った方法は？</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.03.03</p>
+              <p class="sidebar-recent__title">子どもの虫歯予防 — 親ができる5つのこと</p>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a href="#">
+            <div class="sidebar-recent__thumb"><span>IMG</span></div>
+            <div class="sidebar-recent__body">
+              <p class="sidebar-recent__date">2026.02.24</p>
+              <p class="sidebar-recent__title">インプラント治療の流れと期間</p>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </aside>
+
+</div>
+
+<!-- CTA -->
+<section class="cta-banner rv">
+  <div class="container">
+    <p class="cta-banner__title">お口のお悩み、お気軽にご相談ください</p>
+    <p class="cta-banner__text">予防歯科からブラッシング指導まで、あなたの口腔ケアをサポートします。</p>
+    <div class="btn-group btn-group--center">
+      <a href="#" class="btn btn--primary btn--lg">Web予約はこちら</a>
+      <a href="tel:0312345678" class="btn btn--outline">03-1234-5678</a>
+    </div>
+  </div>
+</section>
+
+<footer class="ft"><div class="container"><div class="ft-grid"><div class="ft-brand"><span class="hd-logo">さくら歯科</span><p>〒150-0001<br>東京都渋谷区神宮前1-2-3</p></div><div><h4>Menu</h4><div class="ft-links"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="price.html">料金表</a></div></div><div><h4>診療時間</h4><dl class="ft-info"><dt>診療時間</dt><dd>月〜金 9:00〜12:30 / 14:00〜18:30<br>土 9:00〜12:30 / 14:00〜17:00</dd><dt>休診日</dt><dd>木曜・日曜・祝日</dd></dl></div><div><h4>ご予約</h4><div class="ft-links"><a href="#">Web予約</a><a href="#">LINE予約</a><a href="tel:0312345678">お電話</a></div></div></div><div class="ft-btm"><span>&copy; 2026 さくら歯科クリニック</span><span>Powered by GENOVA</span></div></div></footer>
+<div class="sp-cta"><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
+<script src="../assets/js/modules/main.js"></script>
+</body>
+</html>
