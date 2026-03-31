@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GENOVA Clinic Template — Preview</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base/variables.css">
+  <link rel="stylesheet" href="../assets/css/base/reset.css">
+  <link rel="stylesheet" href="../assets/css/layout/header.css">
+  <link rel="stylesheet" href="../assets/css/layout/footer.css">
+  <link rel="stylesheet" href="../assets/css/components/components.css">
+  <style>
+    /* Preview Index Styles */
+    .preview-hub {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px var(--section-px);
+      background: linear-gradient(160deg, var(--bg-sub) 0%, var(--bg) 40%, var(--accent-light) 100%);
+    }
+    .preview-hub__badge {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: var(--accent-light);
+      padding: 6px 18px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 24px;
+    }
+    .preview-hub__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .preview-hub__sub {
+      font-size: 0.95rem;
+      color: var(--text-light);
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .preview-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      max-width: 960px;
+      width: 100%;
+    }
+    .preview-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 32px 28px;
+      transition: all var(--duration) var(--ease);
+      text-decoration: none;
+      color: inherit;
+    }
+    .preview-card:hover {
+      border-color: var(--accent);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-6px);
+    }
+    .preview-card__en {
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    .preview-card__title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .preview-card__desc {
+      font-size: 0.82rem;
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+    .preview-card__arrow {
+      display: inline-block;
+      margin-top: 16px;
+      font-family: var(--font-display);
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    .preview-meta {
+      margin-top: 64px;
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .preview-meta strong { color: var(--text-light); }
+  </style>
+</head>
+<body>
+  <div class="preview-hub">
+    <div class="preview-hub__badge">Template Preview</div>
+    <h1 class="preview-hub__title">Clinic Template</h1>
+    <p class="preview-hub__sub">GENOVA 医療・歯科クリニック 下層ページテンプレート</p>
+
+    <div class="preview-grid">
+      <a href="about.html" class="preview-card">
+        <p class="preview-card__en">About</p>
+        <h2 class="preview-card__title">医院紹介</h2>
+        <p class="preview-card__desc">理念・コンセプト、当院の特徴、院長メッセージ、医院情報、アクセス</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="treatment.html" class="preview-card">
+        <p class="preview-card__en">Treatment</p>
+        <h2 class="preview-card__title">診療案内</h2>
+        <p class="preview-card__desc">診療メニュー一覧、各科目の詳細、診療の流れ</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="staff.html" class="preview-card">
+        <p class="preview-card__en">Staff</p>
+        <h2 class="preview-card__title">スタッフ紹介</h2>
+        <p class="preview-card__desc">院長プロフィール・経歴、スタッフ一覧</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="access.html" class="preview-card">
+        <p class="preview-card__en">Access</p>
+        <h2 class="preview-card__title">アクセス</h2>
+        <p class="preview-card__desc">地図、医院情報、診療時間表、交通案内</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="price.html" class="preview-card">
+        <p class="preview-card__en">Price</p>
+        <h2 class="preview-card__title">料金表</h2>
+        <p class="preview-card__desc">カテゴリ別料金テーブル、お支払い案内</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;margin-top:48px;">Treatment Detail</h3>
+    <div class="preview-grid" style="max-width:960px;">
+      <a href="treatment-general.html" class="preview-card">
+        <p class="preview-card__en">General</p>
+        <h2 class="preview-card__title">一般歯科</h2>
+        <p class="preview-card__desc">虫歯・歯周病・根管治療。MI治療、素材比較表、FAQ</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="treatment-aesthetic.html" class="preview-card">
+        <p class="preview-card__en">Aesthetic</p>
+        <h2 class="preview-card__title">審美歯科</h2>
+        <p class="preview-card__desc">セラミック・ホワイトニング・ラミネート。Before/After症例</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="treatment-preventive.html" class="preview-card">
+        <p class="preview-card__en">Preventive</p>
+        <h2 class="preview-card__title">予防歯科</h2>
+        <p class="preview-card__desc">PMTC・担当衛生士制・ホームケア指導。予防プログラム</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="treatment-pediatric.html" class="preview-card">
+        <p class="preview-card__en">Pediatric</p>
+        <h2 class="preview-card__title">小児歯科</h2>
+        <p class="preview-card__desc">年齢別ケア・Tell-Show-Do法・シーラント・食育指導</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="treatment-implant.html" class="preview-card">
+        <p class="preview-card__en">Implant</p>
+        <h2 class="preview-card__title">インプラント</h2>
+        <p class="preview-card__desc">CT精密診断・ガイデッドサージェリー・骨造成対応・保証制度</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="treatment-ortho.html" class="preview-card">
+        <p class="preview-card__en">Orthodontics</p>
+        <h2 class="preview-card__title">矯正歯科</h2>
+        <p class="preview-card__desc">ワイヤー・マウスピース矯正比較。小児矯正・料金表</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+    </div>
+
+    <h3 style="font-family:var(--font-display);font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm);margin-bottom:20px;margin-top:48px;">Medical Clinic</h3>
+    <div class="preview-grid" style="max-width:960px;">
+      <a href="medical-internal.html" class="preview-card">
+        <p class="preview-card__en">Internal Medicine</p>
+        <h2 class="preview-card__title">内科</h2>
+        <p class="preview-card__desc">かかりつけ医・生活習慣病・健診・予防接種</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="medical-derma.html" class="preview-card">
+        <p class="preview-card__en">Dermatology</p>
+        <h2 class="preview-card__title">皮膚科</h2>
+        <p class="preview-card__desc">湿疹・アトピー・ニキビ・水虫・帯状疱疹</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="medical-cosmetic.html" class="preview-card">
+        <p class="preview-card__en">Cosmetic Dermatology</p>
+        <h2 class="preview-card__title">美容皮膚科</h2>
+        <p class="preview-card__desc">シミ・シワ・レーザー・ヒアルロン酸・医療脱毛</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="medical-ortho.html" class="preview-card">
+        <p class="preview-card__en">Orthopedics</p>
+        <h2 class="preview-card__title">整形外科</h2>
+        <p class="preview-card__desc">腰痛・肩こり・膝痛・リハビリ・スポーツ整形</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="medical-eye.html" class="preview-card">
+        <p class="preview-card__en">Ophthalmology</p>
+        <h2 class="preview-card__title">眼科</h2>
+        <p class="preview-card__desc">白内障・緑内障・ドライアイ・コンタクト処方</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+      <a href="medical-pediatrics.html" class="preview-card">
+        <p class="preview-card__en">Pediatrics</p>
+        <h2 class="preview-card__title">小児科</h2>
+        <p class="preview-card__desc">小児疾患・予防接種スケジュール・乳幼児健診</p>
+        <span class="preview-card__arrow">Preview →</span>
+      </a>
+    </div>
+
+    <div class="preview-meta">
+      <p><strong>GENOVA XD Division</strong> — Clinic Template v1.0.0</p>
+      <p>WordPress テーマテンプレート + 自動生成ツール</p>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>料金表｜さくら歯科クリニック</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/base/variables.css">
+  <link rel="stylesheet" href="../assets/css/base/reset.css">
+  <link rel="stylesheet" href="../assets/css/layout/header.css">
+  <link rel="stylesheet" href="../assets/css/layout/footer.css">
+  <link rel="stylesheet" href="../assets/css/components/components.css">
+  <link rel="stylesheet" href="../assets/css/pages/price.css">
+</head>
+<body>
+
+<header class="hd" id="hd">
+  <a href="index.html" class="hd-logo">さくら歯科</a>
+  <div class="hd-tel"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><a href="tel:0312345678">03-1234-5678</a><span class="hd-tel-sub">月〜土 9:00〜18:30</span></div></div>
+  <nav class="hd-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a><a href="#" class="hd-cta">Web予約</a></nav>
+  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+</header>
+<div class="mobile-nav" id="mobile-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
+
+<nav class="breadcrumb"><a href="index.html">Top</a> &mdash; <span>料金表</span></nav>
+
+<section class="pg-hero">
+  <div class="inner rv">
+    <h1 class="pg-hero__title"><small>Price</small>料金表</h1>
+    <p class="pg-hero__lead">治療前にしっかりとご説明し、ご納得いただいた上で治療を開始します。</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     01. INTRO — Split
+     ============================================================ -->
+<section class="sec sec--white">
+  <div class="container">
+    <div class="split rv">
+      <div class="split__media">
+        <div class="placeholder-img"><span>カウンセリング風景</span></div>
+      </div>
+      <div class="split__body">
+        <p class="split__label">Pricing Policy</p>
+        <h2 class="split__title">明瞭な料金体系で<br>安心の治療を</h2>
+        <div class="split__text">
+          <p>当院では、治療開始前に費用・期間・選択肢をすべてご説明します。想定外の追加費用が発生することはありません。</p>
+          <p>保険適用の治療を基本に、より高い審美性や耐久性をお求めの方には自費診療もご提案。患者さまのご予算やご要望に合わせて、最適なプランを一緒に考えます。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     02. INSURANCE vs SELF-PAY — Feature Grid
+     ============================================================ -->
+<section class="sec sec--sub">
+  <div class="container">
+    <div class="sec-head rv">
+      <p class="sec-head__label">Coverage</p>
+      <h2 class="sec-head__title">保険診療と自費診療</h2>
+    </div>
+    <div class="feature-grid feature-grid--2col rv" style="max-width:var(--content-w);">
+      <div class="feature-card rv" style="text-align:left;padding:36px;">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span class="tag">保険適用</span>
+          <h3 style="font-size:1.1rem;font-weight:800;">保険診療</h3>
+        </div>
+        <p class="feature-card__text" style="text-align:left;">健康保険が適用される治療です。虫歯や歯周病の一般的な治療、抜歯、入れ歯など、基本的な歯科治療の多くが対象です。</p>
+        <ul style="margin-top:16px;padding-left:1.2em;font-size:0.85rem;color:var(--text-light);line-height:2;">
+          <li style="list-style:disc;">虫歯治療（コンポジットレジン）</li>
+          <li style="list-style:disc;">歯周病治療・歯石除去</li>
+          <li style="list-style:disc;">根管治療</li>
+          <li style="list-style:disc;">抜歯</li>
+          <li style="list-style:disc;">入れ歯（保険適用素材）</li>
+        </ul>
+      </div>
+      <div class="feature-card rv" data-d="1" style="text-align:left;padding:36px;border:2px solid var(--accent);position:relative;overflow:visible;">
+        <div style="position:absolute;top:-12px;right:20px;background:var(--accent);color:#fff;font-size:0.68rem;font-weight:700;padding:4px 14px;border-radius:var(--radius-pill);">人気</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;">
+          <span class="tag tag--warm">自費</span>
+          <h3 style="font-size:1.1rem;font-weight:800;">自費診療</h3>
+        </div>
+        <p class="feature-card__text" style="text-align:left;">保険の制限なく、より高品質な素材や治療法を選択できます。審美性・耐久性・快適性を重視される方におすすめです。</p>
+        <ul style="margin-top:16px;padding-left:1.2em;font-size:0.85rem;color:var(--text-light);line-height:2;">
+          <li style="list-style:disc;">セラミック・ジルコニア修復</li>
+          <li style="list-style:disc;">ホワイトニング</li>
+          <li style="list-style:disc;">インプラント</li>
+          <li style="list-style:disc;">マウスピース矯正</li>
+          <li style="list-style:disc;">精密根管治療（マイクロ使用）</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     03. AESTHETIC — Price Table
+     ============================================================ -->
+<section class="sec sec--white">
+  <div class="container">
+    <div class="sec-head rv"><p class="sec-head__label">Aesthetic</p><h2 class="sec-head__title">審美歯科</h2></div>
+    <div class="price-table-wrap rv">
+      <table class="price-table">
+        <thead><tr><th>治療内容</th><th>素材・特徴</th><th>料金（税込）</th></tr></thead>
+        <tbody>
+          <tr><td>オールセラミック インレー</td><td>天然歯に近い透明感。金属アレルギーの心配なし</td><td class="price-table__price">¥40,000〜¥60,000</td></tr>
+          <tr><td>オールセラミック クラウン</td><td>前歯に最適。色調・透明感が最も自然</td><td class="price-table__price">¥80,000〜¥120,000</td></tr>
+          <tr><td>ジルコニアセラミック クラウン</td><td>強度と美しさを両立。奥歯にも対応</td><td class="price-table__price">¥100,000〜¥150,000</td></tr>
+          <tr><td>ラミネートベニア</td><td>歯の表面を薄く削り、セラミックを貼付</td><td class="price-table__price">¥80,000〜 <span class="price-table__note">/1本</span></td></tr>
+          <tr><td>ダイレクトボンディング</td><td>即日完了。小さな欠けや隙間に</td><td class="price-table__price">¥20,000〜¥40,000</td></tr>
+          <tr><td>オフィスホワイトニング</td><td>院内で施術。1回で効果を実感</td><td class="price-table__price">¥30,000〜</td></tr>
+          <tr><td>ホームホワイトニング</td><td>マウストレイで自宅ケア。じっくり白く</td><td class="price-table__price">¥20,000〜</td></tr>
+          <tr><td>デュアルホワイトニング</td><td>オフィス+ホーム。最も効果的</td><td class="price-table__price">¥45,000〜</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     04. IMPLANT — Price Table
+     ============================================================ -->
+<section class="sec sec--sub">
+  <div class="container">
+    <div class="sec-head rv"><p class="sec-head__label">Implant</p><h2 class="sec-head__title">インプラント</h2></div>
+    <div class="price-table-wrap rv">
+      <table class="price-table">
+        <thead><tr><th>治療内容</th><th>素材・特徴</th><th>料金（税込）</th></tr></thead>
+        <tbody>
+          <tr><td>インプラント（1本）</td><td>フィクスチャー＋アバットメント＋上部構造</td><td class="price-table__price">¥300,000〜¥400,000</td></tr>
+          <tr><td>ガイデッドサージェリー</td><td>CT+シミュレーションで安全・精密な埋入</td><td class="price-table__price">¥50,000〜</td></tr>
+          <tr><td>ソケットリフト</td><td>上顎の骨が薄い場合の骨造成</td><td class="price-table__price">¥50,000〜</td></tr>
+          <tr><td>サイナスリフト</td><td>大幅な骨造成が必要な場合</td><td class="price-table__price">¥150,000〜</td></tr>
+          <tr><td>GBR（骨再生誘導法）</td><td>骨の幅・高さが不足している場合</td><td class="price-table__price">¥50,000〜¥100,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     05. ORTHODONTICS — Price Table
+     ============================================================ -->
+<section class="sec sec--white">
+  <div class="container">
+    <div class="sec-head rv"><p class="sec-head__label">Orthodontics</p><h2 class="sec-head__title">矯正歯科</h2></div>
+    <div class="price-table-wrap rv">
+      <table class="price-table">
+        <thead><tr><th>治療内容</th><th>素材・特徴</th><th>料金（税込）</th></tr></thead>
+        <tbody>
+          <tr><td>矯正相談</td><td>お口の状態を確認し、治療の概要をご説明</td><td class="price-table__price">無料</td></tr>
+          <tr><td>精密検査・診断</td><td>レントゲン・模型分析・治療計画の立案</td><td class="price-table__price">¥30,000</td></tr>
+          <tr><td>ワイヤー矯正（表側）</td><td>最もスタンダードな矯正法</td><td class="price-table__price">¥600,000〜¥800,000</td></tr>
+          <tr><td>ワイヤー矯正（裏側）</td><td>目立たない舌側矯正</td><td class="price-table__price">¥900,000〜¥1,200,000</td></tr>
+          <tr><td>マウスピース矯正</td><td>透明で目立たない。取り外し可能</td><td class="price-table__price">¥400,000〜¥800,000</td></tr>
+          <tr><td>部分矯正</td><td>気になる部分だけ。短期間で完了</td><td class="price-table__price">¥200,000〜¥400,000</td></tr>
+          <tr><td>小児矯正（1期治療）</td><td>顎の成長を利用した早期矯正</td><td class="price-table__price">¥300,000〜¥400,000</td></tr>
+          <tr><td>調整料（月1回）</td><td>治療期間中の定期調整</td><td class="price-table__price">¥5,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     06. OTHER — Price Table
+     ============================================================ -->
+<section class="sec sec--sub">
+  <div class="container">
+    <div class="sec-head rv"><p class="sec-head__label">Other</p><h2 class="sec-head__title">その他の自費診療</h2></div>
+    <div class="price-table-wrap rv">
+      <table class="price-table">
+        <thead><tr><th>治療内容</th><th>素材・特徴</th><th>料金（税込）</th></tr></thead>
+        <tbody>
+          <tr><td>精密根管治療</td><td>マイクロスコープ使用。高い成功率</td><td class="price-table__price">¥50,000〜¥80,000</td></tr>
+          <tr><td>金属床義歯</td><td>薄くて丈夫。装着感が良好</td><td class="price-table__price">¥200,000〜¥350,000</td></tr>
+          <tr><td>ノンクラスプデンチャー</td><td>金属のバネがなく目立たない入れ歯</td><td class="price-table__price">¥100,000〜¥200,000</td></tr>
+          <tr><td>マウスガード（スポーツ用）</td><td>オーダーメイドで最適なフィット感</td><td class="price-table__price">¥15,000〜</td></tr>
+          <tr><td>ナイトガード</td><td>歯ぎしり・食いしばり対策</td><td class="price-table__price">¥10,000〜</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     07. PAYMENT — Notes + Feature Cards
+     ============================================================ -->
+<section class="sec sec--white">
+  <div class="container">
+    <div class="sec-head rv">
+      <p class="sec-head__label">Payment</p>
+      <h2 class="sec-head__title">お支払いについて</h2>
+    </div>
+    <div class="feature-grid rv">
+      <div class="feature-card rv">
+        <div class="feature-card__icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+        <h3 class="feature-card__title">クレジットカード</h3>
+        <p class="feature-card__text">VISA / Mastercard / JCB / AMEX / Diners に対応。自費診療でご利用いただけます。</p>
+      </div>
+      <div class="feature-card rv" data-d="1">
+        <div class="feature-card__icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+        <h3 class="feature-card__title">デンタルローン</h3>
+        <p class="feature-card__text">月々のお支払いで高額治療も安心。最大84回まで分割可能。審査はお気軽にご相談ください。</p>
+      </div>
+      <div class="feature-card rv" data-d="2">
+        <div class="feature-card__icon"><svg viewBox="0 0 24 24" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+        <h3 class="feature-card__title">医療費控除</h3>
+        <p class="feature-card__text">自費診療は医療費控除の対象になる場合があります。領収書は大切に保管してください。詳しくはスタッフまで。</p>
+      </div>
+    </div>
+
+    <!-- 注意事項 -->
+    <div class="price-notes rv" style="margin-top:48px;">
+      <h3>料金に関する注意事項</h3>
+      <ul>
+        <li>上記料金はすべて税込表示です</li>
+        <li>料金はあくまで目安です。症例の複雑さや使用する素材によって変動する場合があります</li>
+        <li>治療開始前に、詳細な費用をお見積もりとしてご提示いたします</li>
+        <li>保険診療の自己負担額は、保険証の種類・割合によって異なります</li>
+        <li>ご不明な点は、カウンセリング時にお気軽にご質問ください</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner rv">
+  <div class="container">
+    <p class="cta-banner__title">費用やお支払いについてもお気軽にご相談ください</p>
+    <p class="cta-banner__text">カウンセリングで詳しくご説明いたします。まずはご予約ください。</p>
+    <div class="btn-group btn-group--center">
+      <a href="#" class="btn btn--primary btn--lg">Web予約はこちら</a>
+      <a href="tel:0312345678" class="btn btn--outline">03-1234-5678</a>
+    </div>
+  </div>
+</section>
+
+<footer class="ft"><div class="container"><div class="ft-grid"><div class="ft-brand"><span class="hd-logo">さくら歯科</span><p>〒150-0001<br>東京都渋谷区神宮前1-2-3</p></div><div><h4>Menu</h4><div class="ft-links"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="access.html">アクセス</a><a href="price.html">料金表</a></div></div><div><h4>診療時間</h4><dl class="ft-info"><dt>診療時間</dt><dd>月〜金 9:00〜12:30 / 14:00〜18:30<br>土 9:00〜12:30 / 14:00〜17:00</dd><dt>休診日</dt><dd>木曜・日曜・祝日</dd></dl></div><div><h4>ご予約</h4><div class="ft-links"><a href="#">Web予約</a><a href="#">LINE予約</a><a href="tel:0312345678">お電話</a></div></div></div><div class="ft-btm"><span>&copy; 2026 さくら歯科クリニック</span><span>Powered by GENOVA</span></div></div></footer>
+<div class="sp-cta"><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
+<script src="../assets/js/modules/main.js"></script>
+</body>
+</html>

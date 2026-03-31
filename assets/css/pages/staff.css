@@ -1,0 +1,142 @@
+/* ==========================================================================
+   Page: Staff — スタッフ紹介
+   ========================================================================== */
+
+/* ── Director ── */
+.staff-director {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: var(--gap-xl);
+  align-items: start;
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.staff-director__photo {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 3 / 4;
+}
+.staff-director__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+.staff-director__position {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.staff-director__name {
+  font-size: 1.6rem;
+  font-weight: 900;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+.staff-director__name span {
+  display: inline;
+  font-size: 0.7em;
+  font-weight: 400;
+  color: var(--text-light);
+  margin-left: 8px;
+}
+.staff-director__profile h4 {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 8px;
+  margin-top: 20px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border-light);
+}
+.staff-director__profile ul {
+  padding-left: 1.2em;
+  list-style: disc;
+}
+.staff-director__profile li {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.9;
+  list-style: disc;
+}
+.staff-director__message {
+  margin-top: 24px;
+  padding: 24px;
+  background: var(--bg-sub);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--accent);
+}
+.staff-director__message p {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 2;
+}
+
+/* ── Staff Grid ── */
+.staff-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--gap-md);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+.staff-card {
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--duration), transform var(--duration);
+}
+.staff-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+.staff-card__photo {
+  aspect-ratio: 1;
+  overflow: hidden;
+}
+.staff-card__photo img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease);
+}
+.staff-card:hover .staff-card__photo img {
+  transform: scale(1.04);
+}
+.staff-card__body {
+  padding: 20px;
+}
+.staff-card__position {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.staff-card__name {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.staff-card__message {
+  font-size: 0.82rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+/* Placeholder in staff */
+.staff-card .placeholder-img,
+.staff-director .placeholder-img {
+  min-height: auto;
+  height: 100%;
+}
+
+@media (max-width: 768px) {
+  .staff-director { grid-template-columns: 1fr; gap: var(--gap-lg); }
+  .staff-director__photo { max-width: 260px; margin: 0 auto; }
+  .staff-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .staff-grid { grid-template-columns: 1fr; }
+}

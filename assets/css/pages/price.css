@@ -1,0 +1,76 @@
+/* ==========================================================================
+   Page: Price — 料金表
+   ========================================================================== */
+
+.price-intro {
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 2.2;
+  padding: var(--gap-md) 0;
+}
+
+/* ── Price Table ── */
+.price-table-wrap {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  overflow-x: auto;
+}
+.price-table {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.price-table th,
+.price-table td {
+  padding: 16px 24px;
+  font-size: 0.88rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+}
+.price-table thead th {
+  background: var(--bg-sub);
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text);
+}
+.price-table tbody tr:hover {
+  background: var(--accent-light);
+}
+.price-table__price {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+}
+.price-table__note {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* ── Notes ── */
+.price-notes {
+  background: var(--bg-sub);
+  border-radius: var(--radius-md);
+  padding: var(--gap-lg);
+  border-left: 3px solid var(--accent);
+}
+.price-notes h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.price-notes ul {
+  padding-left: 1.2em;
+}
+.price-notes li {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 2;
+  list-style: disc;
+}
+
+@media (max-width: 768px) {
+  .price-table th, .price-table td { padding: 12px 14px; font-size: 0.82rem; }
+}

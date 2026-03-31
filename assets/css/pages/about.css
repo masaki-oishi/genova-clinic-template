@@ -1,0 +1,67 @@
+/* ==========================================================================
+   Page: About — 医院紹介 (Enhanced)
+   ========================================================================== */
+
+/* ── Director Message (Split variant) ── */
+.about-message { max-width: var(--content-w); margin: 0 auto; }
+.about-message__label {
+  font-family: var(--font-display);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--accent);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.about-message__heading {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  font-weight: 800;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.about-message__text {
+  color: var(--text-light);
+  line-height: 2.2;
+  font-size: 0.95rem;
+}
+.about-message__text p + p { margin-top: 1.2em; }
+.about-message__author {
+  margin-top: 32px;
+  text-align: right;
+  font-size: 0.92rem;
+  line-height: 1.8;
+}
+.about-message__author strong { font-size: 1.1rem; }
+
+/* ── Equipment Gallery ── */
+.equipment-item {
+  text-align: center;
+}
+.equipment-item__name {
+  margin-top: 12px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.equipment-item__desc {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 4px;
+}
+
+/* ── Map ── */
+.about-map { max-width: var(--content-w); margin: 0 auto; }
+.map-embed { border-radius: var(--radius-md); overflow: hidden; aspect-ratio: 16 / 9; }
+.map-embed iframe { width: 100%; height: 100%; border: 0; }
+.map-placeholder {
+  background: var(--bg-sub);
+  border-radius: var(--radius-md);
+  height: 360px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+}
+.map-placeholder svg { opacity: 0.5; }

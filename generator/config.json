@@ -1,0 +1,60 @@
+{
+  "clinic": {
+    "name": "○○歯科クリニック",
+    "name_en": "○○ Dental Clinic",
+    "catchcopy": "あなたの笑顔を、もっと輝かせる",
+    "tel": "000-000-0000",
+    "address": "〒000-0000\n○○県○○市○○ 0-0-0",
+    "hours": "月〜金 9:00〜12:30 / 14:00〜18:30\n土 9:00〜12:30 / 14:00〜17:00",
+    "closed": "木曜・日曜・祝日",
+    "gmap_embed": "",
+    "line_url": "",
+    "web_yoyaku": ""
+  },
+  "pages": {
+    "about": {
+      "gdoc_id": "",
+      "template": "page-about",
+      "title": "医院紹介",
+      "slug": "about"
+    },
+    "treatment": {
+      "gdoc_id": "",
+      "template": "page-treatment",
+      "title": "診療案内",
+      "slug": "treatment"
+    },
+    "staff": {
+      "gdoc_id": "",
+      "template": "page-staff",
+      "title": "スタッフ紹介",
+      "slug": "staff"
+    },
+    "access": {
+      "gdoc_id": "",
+      "template": "page-access",
+      "title": "アクセス",
+      "slug": "access"
+    },
+    "price": {
+      "gdoc_id": "",
+      "template": "page-price",
+      "title": "料金表",
+      "slug": "price"
+    }
+  },
+  "images": {
+    "input_dir": "./images-input",
+    "output_dir": "../assets/images",
+    "sizes": {
+      "hero": { "width": 1920, "height": 800 },
+      "card": { "width": 640,  "height": 480 },
+      "staff": { "width": 480, "height": 480 },
+      "thumbnail": { "width": 800, "height": 600 }
+    },
+    "formats": ["webp", "jpg"],
+    "quality": 82,
+    "max_width": 1920
+  },
+  "output_dir": "../output"
+}

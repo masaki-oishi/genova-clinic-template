@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Page: Treatment — 診療案内
+   ========================================================================== */
+
+.treatment-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-lg);
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.treatment-card {
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  padding: var(--gap-lg);
+  border: 1px solid var(--border-light);
+  transition: box-shadow var(--duration), transform var(--duration);
+}
+.treatment-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.treatment-card__header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.treatment-card__icon {
+  width: 52px; height: 52px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.treatment-card__icon svg {
+  width: 22px; height: 22px;
+  stroke: var(--accent);
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.treatment-card__en {
+  font-family: var(--font-display);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+.treatment-card__title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text);
+}
+.treatment-card__text {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.9;
+  margin-bottom: 16px;
+}
+.treatment-card__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.treatment-card__list li {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 4px 14px;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+/* ── Flow ── */
+.flow-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.flow-step {
+  display: flex;
+  gap: var(--gap-md);
+  padding: var(--gap-md) 0;
+  border-left: 2px solid var(--accent-light);
+  padding-left: var(--gap-lg);
+  position: relative;
+}
+.flow-step::before {
+  content: '';
+  position: absolute;
+  left: -7px; top: var(--gap-md);
+  width: 12px; height: 12px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.flow-step:last-child { border-left-color: transparent; }
+.flow-step__num {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--accent-10);
+  line-height: 1;
+  flex-shrink: 0;
+  width: 48px;
+}
+.flow-step__title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.flow-step__text {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+@media (max-width: 768px) {
+  .treatment-grid { grid-template-columns: 1fr; gap: var(--gap-md); }
+}

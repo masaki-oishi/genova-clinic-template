@@ -1,0 +1,236 @@
+/* ==========================================================================
+   Treatment Detail Pages — 診療科目詳細 共通CSS
+   ========================================================================== */
+
+/* ── Worry / お悩みチェック ── */
+.worry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-sm);
+  max-width: var(--content-w);
+  margin: 0 auto;
+}
+.worry-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 24px;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text);
+}
+.worry-item::before {
+  content: '';
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  background: var(--accent-light);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%230e8a7d' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 12px;
+}
+
+/* ── Before/After ── */
+.ba-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--gap-md);
+  max-width: var(--content-w);
+  margin: 0 auto;
+}
+.ba-card {
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+}
+.ba-card__images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.ba-card__img {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  position: relative;
+}
+.ba-card__img span {
+  position: absolute;
+  top: 8px; left: 8px;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  color: #fff;
+}
+.ba-card__img--before span { background: var(--text-light); }
+.ba-card__img--after span { background: var(--accent); }
+.ba-card__body {
+  padding: 20px;
+}
+.ba-card__meta {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+.ba-card__meta span {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--bg-sub);
+  color: var(--text-light);
+}
+.ba-card__text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 1.8;
+}
+
+/* ── Comparison Table ── */
+.compare-table {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.compare-table th,
+.compare-table td {
+  padding: 16px 20px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+.compare-table thead th {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.82rem;
+  text-align: center;
+}
+.compare-table thead th:first-child {
+  background: var(--bg-sub);
+  color: var(--text);
+}
+.compare-table tbody td:first-child {
+  font-weight: 700;
+  background: var(--bg-sub);
+  white-space: nowrap;
+}
+.compare-table tbody tr:hover td {
+  background: var(--accent-light);
+}
+.compare-table .highlight {
+  border: 2px solid var(--accent);
+  background: var(--accent-light);
+}
+
+/* ── FAQ ── */
+.faq-list {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-sm);
+}
+.faq-item {
+  background: var(--bg);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+}
+.faq-q {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: background var(--duration);
+}
+.faq-q:hover { background: var(--bg-sub); }
+.faq-q::before {
+  content: 'Q';
+  width: 32px; height: 32px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+.faq-q::after {
+  content: '+';
+  margin-left: auto;
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  transition: transform var(--duration);
+}
+.faq-item.open .faq-q::after {
+  transform: rotate(45deg);
+}
+.faq-a {
+  display: none;
+  padding: 0 24px 20px 72px;
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 2;
+}
+.faq-item.open .faq-a {
+  display: block;
+}
+
+/* ── Risk / Warning Box ── */
+.risk-box {
+  max-width: var(--content-w);
+  margin: 0 auto;
+  padding: 28px 32px;
+  background: var(--warm-light);
+  border-left: 4px solid var(--warm);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: 2;
+}
+.risk-box h4 {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--warm-hover);
+  margin-bottom: 8px;
+}
+.risk-box ul { padding-left: 1.2em; }
+.risk-box li { list-style: disc; }
+
+/* ── Detail Hero with accent bg ── */
+.detail-hero-accent {
+  background: linear-gradient(135deg, var(--accent) 0%, #0ab5a5 100%);
+  color: #fff;
+}
+.detail-hero-accent .pg-hero__title { color: #fff; }
+.detail-hero-accent .pg-hero__title small { color: rgba(255,255,255,0.7); }
+.detail-hero-accent .pg-hero__lead { color: rgba(255,255,255,0.85); }
+.detail-hero-accent::before { background: none; }
+.detail-hero-accent::after { border-color: rgba(255,255,255,0.15); }
+
+@media (max-width: 768px) {
+  .worry-grid { grid-template-columns: 1fr; }
+  .ba-grid { grid-template-columns: 1fr; }
+  .compare-table { font-size: 0.78rem; }
+  .compare-table th, .compare-table td { padding: 12px 14px; }
+  .faq-a { padding-left: 24px; }
+}

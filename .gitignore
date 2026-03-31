@@ -1,0 +1,8 @@
+.vercel
+node_modules/
+.DS_Store
+generator/credentials.json
+generator/token.json
+generator/images-input/*.jpg
+generator/images-input/*.png
+*.log
