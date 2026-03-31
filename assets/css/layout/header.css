@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Header & Navigation
+   Header & Navigation — 1行構成（日英縦並びナビ）
    ========================================================================== */
 
 .hd {
@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(255,255,255,0.94);
+  background: rgba(255,255,255,0.97);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   transition: box-shadow var(--duration) var(--ease);
@@ -20,62 +20,134 @@
   box-shadow: 0 1px 12px rgba(0,0,0,0.06);
 }
 
-/* Logo */
+/* ── Logo ── */
 .hd-logo {
   font-family: var(--font-display);
   font-size: 1.2rem;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.04em;
   color: var(--text);
+  flex-shrink: 0;
 }
-.hd-logo img {
-  height: 36px;
-  width: auto;
+.hd-logo img { height: 36px; width: auto; }
+.hd-logo small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-top: 1px;
 }
 
-/* Nav */
+/* ── Nav: 日英縦並び ── */
 .hd-nav {
   display: flex;
-  gap: 28px;
   align-items: center;
+  gap: 0;
 }
 .hd-nav a {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 16px;
+  text-align: center;
   transition: color var(--duration);
   position: relative;
 }
 .hd-nav a::after {
   content: '';
   position: absolute;
-  bottom: -4px; left: 0;
+  bottom: 0; left: 50%;
   width: 0; height: 2px;
   background: var(--accent);
-  transition: width var(--duration) var(--ease);
+  transition: width 0.3s var(--ease), left 0.3s var(--ease);
 }
-.hd-nav a:hover { color: var(--text); }
-.hd-nav a:hover::after { width: 100%; }
+.hd-nav a:hover::after { width: 80%; left: 10%; }
+.hd-nav__jp {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+.hd-nav__en {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 1px;
+}
+.hd-nav a:hover .hd-nav__jp { color: var(--accent); }
+.hd-nav a:hover .hd-nav__en { color: var(--accent); }
 
-/* CTA Button */
-.hd-cta {
-  padding: 10px 24px;
-  background: var(--accent);
-  color: #fff !important;
+/* ── Submenu (診療案内メガメニュー) ── */
+.hd-nav__item { position: relative; }
+.hd-submenu {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  min-width: 420px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s var(--ease), transform 0.25s var(--ease);
+  transform: translateX(-50%) translateY(8px);
+}
+.hd-nav__item:hover .hd-submenu {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+.hd-submenu a {
+  display: block;
+  padding: 10px 14px;
   border-radius: var(--radius-sm);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  transition: background var(--duration), transform var(--duration);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text);
+  transition: background 0.2s, color 0.2s;
+  text-align: left;
 }
-.hd-cta::after { display: none; }
-.hd-cta:hover {
-  background: var(--accent-hover);
-  color: #fff;
-  transform: translateY(-1px);
+.hd-submenu a::after { display: none; }
+.hd-submenu a:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+.hd-submenu__en {
+  font-family: var(--font-display);
+  font-size: 0.55rem;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  display: block;
+  margin-top: 2px;
+}
+.hd-submenu a:hover .hd-submenu__en { color: var(--accent); }
+
+/* ── Header Right (診療時間) ── */
+.hd-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.hd-hours {
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  text-align: right;
+  line-height: 1.6;
 }
 
-/* Tel (PC) */
+/* ── Tel (Legacy: ヘッダー内電話番号。新デザインでは右下固定に移動) ── */
 .hd-tel {
   display: flex;
   align-items: center;
@@ -86,10 +158,7 @@
   color: var(--text);
   letter-spacing: 0.03em;
 }
-.hd-tel svg {
-  width: 18px; height: 18px;
-  fill: var(--accent);
-}
+.hd-tel svg { width: 18px; height: 18px; fill: var(--accent); }
 .hd-tel-sub {
   font-family: var(--font-body);
   font-size: 0.65rem;
@@ -98,7 +167,50 @@
   display: block;
 }
 
-/* Burger */
+/* ── CTA Button (in header — legacy) ── */
+.hd-cta {
+  padding: 10px 24px;
+  background: var(--accent);
+  color: #fff !important;
+  border-radius: var(--radius-sm);
+  font-size: 0.78rem;
+  font-weight: 700;
+  transition: background var(--duration), transform var(--duration);
+}
+.hd-cta::after { display: none; }
+.hd-cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+
+/* ── 右下固定 CTA ── */
+.fixed-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.fixed-cta__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--radius-md);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.3s var(--ease);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  text-decoration: none;
+}
+.fixed-cta__btn:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(0,0,0,0.18); }
+.fixed-cta__btn--primary { background: var(--accent); color: #fff; }
+.fixed-cta__btn--tel { background: #fff; color: var(--text); border: 1px solid var(--border); }
+.fixed-cta__btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+.fixed-cta__btn--primary svg { fill: #fff; stroke: none; }
+.fixed-cta__btn--tel svg { fill: var(--accent); stroke: none; }
+.fixed-cta__sub { font-size: 0.6rem; color: var(--text-muted); display: block; font-weight: 400; }
+
+/* ── Burger ── */
 .burger {
   display: none;
   cursor: pointer;
@@ -117,7 +229,7 @@
 .burger.active span:nth-child(2) { opacity: 0; }
 .burger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Mobile Nav Overlay */
+/* ── Mobile Nav Overlay ── */
 .mobile-nav {
   position: fixed;
   inset: 0;
@@ -133,10 +245,7 @@
   pointer-events: none;
   transition: opacity var(--duration) var(--ease);
 }
-.mobile-nav.open {
-  opacity: 1;
-  pointer-events: auto;
-}
+.mobile-nav.open { opacity: 1; pointer-events: auto; }
 .mobile-nav a {
   font-size: 1.2rem;
   font-weight: 500;
@@ -145,7 +254,7 @@
 }
 .mobile-nav a:hover { color: var(--accent); }
 
-/* Breadcrumb */
+/* ── Breadcrumb ── */
 .breadcrumb {
   font-family: var(--font-display);
   font-size: 0.68rem;
@@ -156,13 +265,10 @@
   padding: calc(var(--header-h) + 20px) var(--section-px) 0;
   background: var(--bg-sub);
 }
-.breadcrumb a {
-  color: var(--text-muted);
-  transition: color var(--duration);
-}
+.breadcrumb a { color: var(--text-muted); transition: color var(--duration); }
 .breadcrumb a:hover { color: var(--accent); }
 
-/* SP CTA Bar */
+/* ── SP CTA Bar (legacy — 新デザインでは fixed-cta を使用) ── */
 .sp-cta {
   display: none;
   position: fixed;
@@ -175,10 +281,14 @@
 }
 
 @media (max-width: 768px) {
-  .hd { padding: 0 20px; }
+  .hd { padding: 0 20px; height: auto; padding-top: 12px; padding-bottom: 12px; }
   .hd-nav { display: none; }
+  .hd-hours { display: none; }
+  .hd-right { display: none; }
   .hd-tel { display: none; }
   .burger { display: flex; }
-  .breadcrumb { padding-left: 20px; padding-right: 20px; }
+  .breadcrumb { padding-left: 20px; padding-right: 20px; padding-top: calc(var(--header-h) + 8px); }
   .sp-cta { display: flex; }
+  .fixed-cta { bottom: 16px; right: 16px; }
+  .fixed-cta__btn { padding: 12px 18px; font-size: 0.78rem; }
 }
