@@ -19,6 +19,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { parseGoogleDoc, parseMarkdownFile, parseMarkdown } from './gdocs-parser.js';
 import { processImages, printSummary } from './image-processor.js';
+import { connectDriveFolder, extractFolderId, cleanup } from './gdrive-connector.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -52,8 +53,35 @@ async function main() {
   const outputDir = path.resolve(__dirname, config.output_dir || '../output');
   await fs.mkdir(outputDir, { recursive: true });
 
-  // ── 画像処理 ──
-  if (args.images || !args.page) {
+  // ── Google Driveモード ──
+  let driveData = null;
+  const tempDir = path.join(__dirname, '.tmp-drive');
+
+  if (args.drive) {
+    const folderId = extractFolderId(args.drive);
+    console.log(`📁 Google Drive フォルダを読み込み中... (${folderId})\n`);
+
+    driveData = await connectDriveFolder(folderId, { tempDir });
+
+    // クリニック情報をconfigに上書き
+    if (driveData.clinicInfo) {
+      Object.assign(config.clinic, driveData.clinicInfo);
+      console.log(`\n✓ クリニック情報: ${config.clinic.name || '(未設定)'}`);
+    }
+
+    // 画像処理
+    if (driveData.imagesDir) {
+      console.log('\n📷 画像処理中...');
+      const imgOutput = path.resolve(__dirname, config.images.output_dir);
+      const results = await processImages(driveData.imagesDir, imgOutput, config.images);
+      printSummary(results);
+    }
+
+    console.log('');
+  }
+
+  // ── 画像処理（ローカルモード） ──
+  if (!args.drive && (args.images || !args.page)) {
     const imgInput = args.images
       ? path.resolve(args.images)
       : path.resolve(__dirname, config.images.input_dir);
@@ -75,7 +103,7 @@ async function main() {
   }
 
   // ── ページ生成 ──
-  if (args.images && !args.gdoc && !args.markdown && !args.page) {
+  if (args.images && !args.gdoc && !args.markdown && !args.page && !args.drive) {
     // 画像処理のみ
     console.log('\n✅ 画像処理完了\n');
     return;
@@ -113,8 +141,9 @@ async function main() {
   for (const [pageKey, pageConfig] of Object.entries(pages)) {
     if (!pageConfig) continue;
 
+    // Driveモード: driveDataから原稿を取得
     // 個別ページのGDoc IDがある場合はそちらを使う
-    let pageData = docData;
+    let pageData = driveData?.docs?.[pageKey] || docData;
     if (!pageData && pageConfig.gdoc_id) {
       console.log(`  📄 ${pageKey}: Google Docs を取得中...`);
       pageData = await parseGoogleDoc(pageConfig.gdoc_id);
@@ -141,6 +170,11 @@ async function main() {
 
   // WordPress用の設定ファイルも出力
   await generateWpConfig(outputDir, config.clinic);
+
+  // Driveモード: 一時ファイルのクリーンアップ
+  if (args.drive) {
+    await cleanup(tempDir);
+  }
 
   console.log('\n✅ 生成完了!\n');
   console.log(`出力先: ${outputDir}`);
