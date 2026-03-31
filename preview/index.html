@@ -3,233 +3,260 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GENOVA Clinic Template — Preview</title>
+  <title>GENOVA Clinic Template</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/base/variables.css">
   <link rel="stylesheet" href="../assets/css/base/reset.css">
-  <link rel="stylesheet" href="../assets/css/layout/header.css">
-  <link rel="stylesheet" href="../assets/css/layout/footer.css">
-  <link rel="stylesheet" href="../assets/css/components/components.css">
   <style>
-    /* Preview Index Styles */
-    .preview-hub {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 80px var(--section-px);
-      background: linear-gradient(160deg, var(--bg-sub) 0%, var(--bg) 40%, var(--accent-light) 100%);
+    /* ── Hero ── */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 80px var(--section-px); text-align: center; background: var(--text); color: #fff; position: relative; overflow: hidden; }
+    .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(14,138,125,0.25) 0%, transparent 50%), radial-gradient(ellipse at 80% 50%, rgba(200,149,108,0.15) 0%, transparent 50%); }
+    .hero > * { position: relative; z-index: 2; }
+    .hero__badge { font-family: var(--font-display); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); border: 1px solid rgba(14,138,125,0.4); padding: 8px 24px; border-radius: var(--radius-pill); margin-bottom: 32px; }
+    .hero__title { font-family: var(--font-display); font-size: clamp(2.4rem, 5.5vw, 4.5rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
+    .hero__title span { color: var(--accent); }
+    .hero__sub { font-size: 1rem; color: rgba(255,255,255,0.6); max-width: 560px; line-height: 2; margin-bottom: 40px; }
+    .hero__cta { display: inline-flex; align-items: center; gap: 8px; padding: 16px 36px; background: var(--accent); color: #fff; border-radius: var(--radius-sm); font-size: 0.88rem; font-weight: 700; transition: all 0.4s var(--ease); }
+    .hero__cta:hover { background: var(--accent-hover); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(14,138,125,0.3); }
+
+    /* ── Section ── */
+    .s { padding: clamp(80px, 10vw, 140px) var(--section-px); }
+    .s--white { background: var(--bg); }
+    .s--sub { background: var(--bg-sub); }
+    .s--dark { background: var(--text); color: #fff; }
+    .ctr { max-width: 1080px; margin: 0 auto; }
+
+    .s-head { text-align: center; margin-bottom: clamp(40px, 6vw, 72px); }
+    .s-head__label { font-family: var(--font-display); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); margin-bottom: 12px; }
+    .s--dark .s-head__label { color: var(--warm); }
+    .s-head__title { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 900; letter-spacing: -0.02em; line-height: 1.3; }
+    .s-head__sub { margin-top: 16px; font-size: 0.92rem; color: var(--text-light); max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.9; }
+    .s--dark .s-head__sub { color: rgba(255,255,255,0.55); }
+
+    /* ── Flow ── */
+    .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px; }
+    .flow__step { text-align: center; padding: 28px 14px; background: var(--bg); border-radius: var(--radius-md); position: relative; }
+    .flow__step::after { content: '\2192'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); font-size: 1.1rem; color: var(--accent); font-weight: 700; z-index: 2; }
+    .flow__step:last-child::after { display: none; }
+    .flow__icon { width: 44px; height: 44px; margin: 0 auto 10px; background: var(--accent-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+    .flow__icon svg { width: 20px; height: 20px; stroke: var(--accent); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+    .flow__title { font-size: 0.82rem; font-weight: 700; margin-bottom: 4px; }
+    .flow__text { font-size: 0.7rem; color: var(--text-light); line-height: 1.6; }
+
+    /* ── Before/After ── */
+    .ba { display: grid; grid-template-columns: 1fr 60px 1fr; align-items: center; max-width: 960px; margin: 0 auto; }
+    .ba__side { border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+    .ba__label { padding: 12px 20px; font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-align: center; }
+    .ba__side--before .ba__label { background: var(--bg-sub); color: var(--text-muted); }
+    .ba__side--after .ba__label { background: var(--accent); color: #fff; }
+    .ba__content { padding: 24px; min-height: 380px; display: flex; flex-direction: column; gap: 8px; font-size: 0.82rem; color: var(--text-light); line-height: 1.8; }
+    .ba__side--before .ba__content { background: var(--bg-sub); }
+    .ba__side--after .ba__content { background: var(--bg); }
+    .ba__arrow { display: flex; align-items: center; justify-content: center; }
+    .ba__arrow svg { width: 36px; height: 36px; stroke: var(--accent); fill: none; stroke-width: 2; }
+
+    /* ── Stats ── */
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--gap-md); }
+    .stat { text-align: center; padding: 28px 14px; background: rgba(255,255,255,0.04); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.08); }
+    .stat__num { font-family: var(--font-display); font-size: clamp(2rem, 3vw, 2.6rem); font-weight: 900; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+    .stat__num span { font-size: 0.4em; color: rgba(255,255,255,0.5); }
+    .stat__label { font-size: 0.78rem; color: rgba(255,255,255,0.55); }
+
+    /* ── Template Grid ── */
+    .tg { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .tc { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-md); overflow: hidden; transition: all 0.4s var(--ease); text-decoration: none; color: inherit; }
+    .tc:hover { box-shadow: var(--shadow-lg); transform: translateY(-6px); border-color: var(--accent); }
+    .tc__preview { aspect-ratio: 16 / 10; background: var(--bg-sub); border-bottom: 1px solid var(--border); overflow: hidden; }
+    .tc__preview iframe { width: 200%; height: 200%; transform: scale(0.5); transform-origin: top left; border: none; pointer-events: none; }
+    .tc__body { padding: 16px; }
+    .tc__cat { font-family: var(--font-display); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+    .tc__title { font-size: 0.95rem; font-weight: 700; margin-bottom: 2px; }
+    .tc__desc { font-size: 0.72rem; color: var(--text-light); }
+
+    /* ── Complete Demo Card ── */
+    .demo-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 960px; margin: 0 auto; }
+    .dc { border-radius: var(--radius-md); overflow: hidden; text-decoration: none; color: inherit; border: 1px solid var(--border); transition: all 0.4s var(--ease); }
+    .dc:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--accent); }
+    .dc__img { aspect-ratio: 16/10; overflow: hidden; }
+    .dc__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s var(--ease); }
+    .dc:hover .dc__img img { transform: scale(1.05); }
+    .dc__body { padding: 16px; background: var(--bg); }
+    .dc__cat { font-family: var(--font-display); font-size: 0.58rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--accent); margin-bottom: 2px; }
+    .dc__title { font-size: 0.95rem; font-weight: 700; }
+
+    /* ── Section Label ── */
+    .sec-label { font-family: var(--font-display); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 16px; }
+
+    /* ── Tech Stack ── */
+    .tech { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 800px; margin: 0 auto; }
+    .tech__card { padding: 28px; background: var(--bg-sub); border-radius: var(--radius-md); text-align: center; }
+    .tech__icon { font-size: 1.8rem; margin-bottom: 8px; }
+    .tech__title { font-size: 0.88rem; font-weight: 700; margin-bottom: 4px; }
+    .tech__text { font-size: 0.78rem; color: var(--text-light); }
+
+    /* ── CTA ── */
+    .cta { text-align: center; padding: 80px var(--section-px); background: linear-gradient(135deg, var(--accent) 0%, #0ab5a5 50%, var(--warm) 100%); color: #fff; position: relative; overflow: hidden; }
+    .cta::before { content: ''; position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+    .cta > * { position: relative; z-index: 2; }
+    .cta__title { font-size: clamp(1.4rem, 2.5vw, 2rem); font-weight: 900; margin-bottom: 12px; }
+    .cta__text { font-size: 0.92rem; opacity: 0.85; margin-bottom: 28px; }
+    .cta__links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .cta__link { padding: 14px 32px; border-radius: var(--radius-sm); font-size: 0.85rem; font-weight: 700; transition: all 0.3s; }
+    .cta__link--w { background: #fff; color: var(--accent); }
+    .cta__link--w:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+    .cta__link--g { border: 1px solid rgba(255,255,255,0.3); color: #fff; }
+    .cta__link--g:hover { background: rgba(255,255,255,0.1); }
+
+    .footer { padding: 28px var(--section-px); text-align: center; font-size: 0.7rem; color: var(--text-muted); background: var(--bg-sub); }
+
+    .rv { opacity: 0; transform: translateY(28px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
+    .rv.vis { opacity: 1; transform: none; }
+
+    @media (max-width: 768px) {
+      .flow { grid-template-columns: 1fr; gap: 10px; }
+      .flow__step::after { display: none; }
+      .ba { grid-template-columns: 1fr; gap: 16px; }
+      .ba__arrow svg { transform: rotate(90deg); }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .tg, .demo-cards { grid-template-columns: 1fr; }
+      .tech { grid-template-columns: 1fr; }
     }
-    .preview-hub__badge {
-      font-family: var(--font-display);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--accent);
-      background: var(--accent-light);
-      padding: 6px 18px;
-      border-radius: var(--radius-pill);
-      margin-bottom: 24px;
-    }
-    .preview-hub__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.4rem, 5vw, 4rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      text-align: center;
-      margin-bottom: 12px;
-    }
-    .preview-hub__sub {
-      font-size: 0.95rem;
-      color: var(--text-light);
-      text-align: center;
-      margin-bottom: 56px;
-    }
-    .preview-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
-      max-width: 960px;
-      width: 100%;
-    }
-    .preview-card {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 32px 28px;
-      transition: all var(--duration) var(--ease);
-      text-decoration: none;
-      color: inherit;
-    }
-    .preview-card:hover {
-      border-color: var(--accent);
-      box-shadow: var(--shadow-md);
-      transform: translateY(-6px);
-    }
-    .preview-card__en {
-      font-family: var(--font-display);
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 6px;
-    }
-    .preview-card__title {
-      font-size: 1.15rem;
-      font-weight: 800;
-      margin-bottom: 8px;
-    }
-    .preview-card__desc {
-      font-size: 0.82rem;
-      color: var(--text-light);
-      line-height: 1.7;
-    }
-    .preview-card__arrow {
-      display: inline-block;
-      margin-top: 16px;
-      font-family: var(--font-display);
-      font-size: 0.72rem;
-      font-weight: 600;
-      color: var(--accent);
-      letter-spacing: 0.05em;
-    }
-    .preview-meta {
-      margin-top: 64px;
-      text-align: center;
-      font-size: 0.75rem;
-      color: var(--text-muted);
-    }
-    .preview-meta strong { color: var(--text-light); }
   </style>
 </head>
 <body>
-  <div class="preview-hub">
-    <div class="preview-hub__badge">Template Preview</div>
-    <h1 class="preview-hub__title">Clinic Template</h1>
-    <p class="preview-hub__sub">GENOVA 医療・歯科クリニック 下層ページテンプレート</p>
 
-    <div class="preview-grid">
-      <a href="about.html" class="preview-card">
-        <p class="preview-card__en">About</p>
-        <h2 class="preview-card__title">医院紹介</h2>
-        <p class="preview-card__desc">理念・コンセプト、当院の特徴、院長メッセージ、医院情報、アクセス</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="treatment.html" class="preview-card">
-        <p class="preview-card__en">Treatment</p>
-        <h2 class="preview-card__title">診療案内</h2>
-        <p class="preview-card__desc">診療メニュー一覧、各科目の詳細、診療の流れ</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="staff.html" class="preview-card">
-        <p class="preview-card__en">Staff</p>
-        <h2 class="preview-card__title">スタッフ紹介</h2>
-        <p class="preview-card__desc">院長プロフィール・経歴、スタッフ一覧</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="access.html" class="preview-card">
-        <p class="preview-card__en">Access</p>
-        <h2 class="preview-card__title">アクセス</h2>
-        <p class="preview-card__desc">地図、医院情報、診療時間表、交通案内</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="price.html" class="preview-card">
-        <p class="preview-card__en">Price</p>
-        <h2 class="preview-card__title">料金表</h2>
-        <p class="preview-card__desc">カテゴリ別料金テーブル、お支払い案内</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-    </div>
+<!-- ============================================================ HERO ============================================================ -->
+<section class="hero">
+  <div class="hero__badge">GENOVA XD Division</div>
+  <h1 class="hero__title">原稿と写真を入れるだけ。<br>クリニックサイトが<span>自動で</span>できる。</h1>
+  <p class="hero__sub">Google Driveに原稿テキストと写真をアップロードするだけで、WordPress対応の医療・歯科クリニックサイトが自動生成されます。</p>
+  <a href="#how" class="hero__cta">仕組みを見る ↓</a>
+</section>
 
-    <h3 style="font-family:var(--font-display);font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;margin-top:48px;">Treatment Detail</h3>
-    <div class="preview-grid" style="max-width:960px;">
-      <a href="treatment-general.html" class="preview-card">
-        <p class="preview-card__en">General</p>
-        <h2 class="preview-card__title">一般歯科</h2>
-        <p class="preview-card__desc">虫歯・歯周病・根管治療。MI治療、素材比較表、FAQ</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="treatment-aesthetic.html" class="preview-card">
-        <p class="preview-card__en">Aesthetic</p>
-        <h2 class="preview-card__title">審美歯科</h2>
-        <p class="preview-card__desc">セラミック・ホワイトニング・ラミネート。Before/After症例</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="treatment-preventive.html" class="preview-card">
-        <p class="preview-card__en">Preventive</p>
-        <h2 class="preview-card__title">予防歯科</h2>
-        <p class="preview-card__desc">PMTC・担当衛生士制・ホームケア指導。予防プログラム</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="treatment-pediatric.html" class="preview-card">
-        <p class="preview-card__en">Pediatric</p>
-        <h2 class="preview-card__title">小児歯科</h2>
-        <p class="preview-card__desc">年齢別ケア・Tell-Show-Do法・シーラント・食育指導</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="treatment-implant.html" class="preview-card">
-        <p class="preview-card__en">Implant</p>
-        <h2 class="preview-card__title">インプラント</h2>
-        <p class="preview-card__desc">CT精密診断・ガイデッドサージェリー・骨造成対応・保証制度</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="treatment-ortho.html" class="preview-card">
-        <p class="preview-card__en">Orthodontics</p>
-        <h2 class="preview-card__title">矯正歯科</h2>
-        <p class="preview-card__desc">ワイヤー・マウスピース矯正比較。小児矯正・料金表</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-    </div>
-
-    <h3 style="font-family:var(--font-display);font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;color:var(--warm);margin-bottom:20px;margin-top:48px;">Medical Clinic</h3>
-    <div class="preview-grid" style="max-width:960px;">
-      <a href="medical-internal.html" class="preview-card">
-        <p class="preview-card__en">Internal Medicine</p>
-        <h2 class="preview-card__title">内科</h2>
-        <p class="preview-card__desc">かかりつけ医・生活習慣病・健診・予防接種</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="medical-derma.html" class="preview-card">
-        <p class="preview-card__en">Dermatology</p>
-        <h2 class="preview-card__title">皮膚科</h2>
-        <p class="preview-card__desc">湿疹・アトピー・ニキビ・水虫・帯状疱疹</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="medical-cosmetic.html" class="preview-card">
-        <p class="preview-card__en">Cosmetic Dermatology</p>
-        <h2 class="preview-card__title">美容皮膚科</h2>
-        <p class="preview-card__desc">シミ・シワ・レーザー・ヒアルロン酸・医療脱毛</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="medical-ortho.html" class="preview-card">
-        <p class="preview-card__en">Orthopedics</p>
-        <h2 class="preview-card__title">整形外科</h2>
-        <p class="preview-card__desc">腰痛・肩こり・膝痛・リハビリ・スポーツ整形</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="medical-eye.html" class="preview-card">
-        <p class="preview-card__en">Ophthalmology</p>
-        <h2 class="preview-card__title">眼科</h2>
-        <p class="preview-card__desc">白内障・緑内障・ドライアイ・コンタクト処方</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-      <a href="medical-pediatrics.html" class="preview-card">
-        <p class="preview-card__en">Pediatrics</p>
-        <h2 class="preview-card__title">小児科</h2>
-        <p class="preview-card__desc">小児疾患・予防接種スケジュール・乳幼児健診</p>
-        <span class="preview-card__arrow">Preview →</span>
-      </a>
-    </div>
-
-    <div class="preview-meta">
-      <p><strong>GENOVA XD Division</strong> — Clinic Template v1.0.0</p>
-      <p>WordPress テーマテンプレート + 自動生成ツール</p>
+<!-- ============================================================ HOW IT WORKS ============================================================ -->
+<section class="s s--sub" id="how">
+  <div class="ctr">
+    <div class="s-head rv"><p class="s-head__label">How It Works</p><h2 class="s-head__title">原稿を入れるだけで、サイトができる</h2><p class="s-head__sub">クライアントはGoogleドキュメントに原稿を書いて、写真をアップロードするだけ。あとは自動。</p></div>
+    <div class="flow rv">
+      <div class="flow__step"><div class="flow__icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3 class="flow__title">フォルダを共有</h3><p class="flow__text">テンプレート付きGoogle Driveフォルダをクライアントに共有</p></div>
+      <div class="flow__step"><div class="flow__icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></div><h3 class="flow__title">原稿を記入</h3><p class="flow__text">Google Docsにテキストを記入。見出し機能を使うだけ</p></div>
+      <div class="flow__step"><div class="flow__icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><h3 class="flow__title">写真をアップ</h3><p class="flow__text">院長写真・外観・院内写真をDriveにドラッグ&ドロップ</p></div>
+      <div class="flow__step"><div class="flow__icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div><h3 class="flow__title">自動生成</h3><p class="flow__text">コマンド1つで原稿取得→画像処理→PHP生成が全自動</p></div>
+      <div class="flow__step"><div class="flow__icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><h3 class="flow__title">WP公開</h3><p class="flow__text">生成されたzipをWPにアップ。テーマ有効化で完了</p></div>
     </div>
   </div>
+</section>
+
+<!-- ============================================================ BEFORE / AFTER ============================================================ -->
+<section class="s s--white">
+  <div class="ctr">
+    <div class="s-head rv"><p class="s-head__label">Before → After</p><h2 class="s-head__title">入力するもの → 出力されるもの</h2></div>
+    <div class="ba rv">
+      <div class="ba__side ba__side--before">
+        <div class="ba__label">Input</div>
+        <div class="ba__content">
+          <p><strong>📄 クリニック情報</strong>（Google Docs）</p><p style="font-size:0.75rem;color:var(--text-muted);padding-left:16px;">医院名、電話番号、住所、診療時間…</p>
+          <p style="margin-top:8px;"><strong>📝 原稿テキスト × 5ページ</strong></p><p style="font-size:0.75rem;color:var(--text-muted);padding-left:16px;">医院紹介 / 診療案内 / スタッフ / アクセス / 料金表</p>
+          <p style="margin-top:8px;"><strong>📷 写真 × 5〜10枚</strong></p><p style="font-size:0.75rem;color:var(--text-muted);padding-left:16px;">院長 / 外観 / 院内 / スタッフ</p>
+          <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--text-muted);">所要時間: 2〜3時間 / 特別なツール: 不要</div>
+        </div>
+      </div>
+      <div class="ba__arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="ba__side ba__side--after">
+        <div class="ba__label">Output</div>
+        <div class="ba__content">
+          <p><strong>🌐 完成品Webサイト</strong></p><p style="font-size:0.75rem;padding-left:16px;">全17ページ、レスポンシブ対応</p>
+          <p style="margin-top:8px;"><strong>📱 WordPress テーマ</strong></p><p style="font-size:0.75rem;padding-left:16px;">PHPテンプレート + CSS + JS 一式 + ZIP</p>
+          <p style="margin-top:8px;"><strong>🖼 最適化済み画像</strong></p><p style="font-size:0.75rem;padding-left:16px;">WebP変換 + 各サイズ自動リサイズ</p>
+          <div style="margin-top:auto;padding-top:16px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--accent);font-weight:600;">生成時間: 約30秒 / 手作業: ゼロ</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ STATS ============================================================ -->
+<section class="s s--dark">
+  <div class="ctr">
+    <div class="s-head rv"><p class="s-head__label">Impact</p><h2 class="s-head__title">制作効率がこう変わる</h2></div>
+    <div class="stats rv">
+      <div class="stat"><div class="stat__num">17<span>ページ</span></div><div class="stat__label">テンプレート数</div></div>
+      <div class="stat"><div class="stat__num">12<span>科目</span></div><div class="stat__label">歯科6 + 医科6</div></div>
+      <div class="stat"><div class="stat__num">30<span>秒</span></div><div class="stat__label">サイト生成時間</div></div>
+      <div class="stat"><div class="stat__num">0<span>行</span></div><div class="stat__label">コーディング作業</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ COMPLETE DEMO ============================================================ -->
+<section class="s s--sub">
+  <div class="ctr">
+    <div class="s-head rv"><p class="s-head__label">Complete Demo</p><h2 class="s-head__title">写真・テキスト反映済みの完成イメージ</h2><p class="s-head__sub">架空の「さくら歯科クリニック」で、原稿と写真が入った完成品をご覧いただけます</p></div>
+    <div class="demo-cards rv">
+      <a href="demo-complete/about.html" class="dc"><div class="dc__img"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&h=375&fit=crop" alt="" loading="lazy"></div><div class="dc__body"><p class="dc__cat">About</p><h3 class="dc__title">医院紹介</h3></div></a>
+      <a href="demo-complete/treatment.html" class="dc"><div class="dc__img"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&h=375&fit=crop" alt="" loading="lazy"></div><div class="dc__body"><p class="dc__cat">Treatment</p><h3 class="dc__title">診療案内</h3></div></a>
+      <a href="demo-complete/staff.html" class="dc"><div class="dc__img"><img src="https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=600&h=375&fit=crop" alt="" loading="lazy"></div><div class="dc__body"><p class="dc__cat">Staff</p><h3 class="dc__title">スタッフ紹介</h3></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TEMPLATES ============================================================ -->
+<section class="s s--white">
+  <div class="ctr">
+    <div class="s-head rv"><p class="s-head__label">Templates</p><h2 class="s-head__title">テンプレート一覧</h2></div>
+
+    <p class="sec-label" style="color:var(--text-muted);">共通ページ</p>
+    <div class="tg rv" style="margin-bottom:40px;">
+      <a href="about.html" class="tc"><div class="tc__preview"><iframe src="about.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Common</p><h4 class="tc__title">医院紹介</h4><p class="tc__desc">コンセプト / 数字 / 特徴 / 院長 / 理念 / 設備</p></div></a>
+      <a href="treatment.html" class="tc"><div class="tc__preview"><iframe src="treatment.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Common</p><h4 class="tc__title">診療案内</h4><p class="tc__desc">6メニュー / Timeline / 痛くない治療</p></div></a>
+      <a href="staff.html" class="tc"><div class="tc__preview"><iframe src="staff.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Common</p><h4 class="tc__title">スタッフ紹介</h4><p class="tc__desc">院長 / 歯科医師 / 衛生士 / 採用</p></div></a>
+    </div>
+
+    <p class="sec-label" style="color:var(--accent);">歯科テンプレート</p>
+    <div class="tg rv" style="margin-bottom:40px;">
+      <a href="treatment-general.html" class="tc"><div class="tc__preview"><iframe src="treatment-general.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Dental</p><h4 class="tc__title">一般歯科</h4><p class="tc__desc">虫歯C0-C4 / 歯周病 / 根管 / 素材比較</p></div></a>
+      <a href="treatment-aesthetic.html" class="tc"><div class="tc__preview"><iframe src="treatment-aesthetic.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Dental</p><h4 class="tc__title">審美歯科</h4><p class="tc__desc">B/A症例 / WH3種 / 素材5種比較</p></div></a>
+      <a href="treatment-implant.html" class="tc"><div class="tc__preview"><iframe src="treatment-implant.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Dental</p><h4 class="tc__title">インプラント</h4><p class="tc__desc">3補綴比較 / 骨造成 / 8Step / 料金</p></div></a>
+    </div>
+
+    <p class="sec-label" style="color:var(--warm);">医科テンプレート</p>
+    <div class="tg rv">
+      <a href="medical-internal.html" class="tc"><div class="tc__preview"><iframe src="medical-internal.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Medical</p><h4 class="tc__title">内科</h4><p class="tc__desc">生活習慣病 / 健診 / 予防接種</p></div></a>
+      <a href="medical-cosmetic.html" class="tc"><div class="tc__preview"><iframe src="medical-cosmetic.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Medical</p><h4 class="tc__title">美容皮膚科</h4><p class="tc__desc">9施術 / IPL / HA+BTX / 料金</p></div></a>
+      <a href="medical-eye.html" class="tc"><div class="tc__preview"><iframe src="medical-eye.html" loading="lazy" tabindex="-1"></iframe></div><div class="tc__body"><p class="tc__cat">Medical</p><h4 class="tc__title">眼科</h4><p class="tc__desc">白内障 / 緑内障 / OCT / CL処方</p></div></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ TECH STACK ============================================================ -->
+<section class="s s--sub">
+  <div class="ctr">
+    <div class="s-head rv"><p class="s-head__label">Tech Stack</p><h2 class="s-head__title">技術構成</h2></div>
+    <div class="tech rv">
+      <div class="tech__card"><div class="tech__icon">📄</div><h4 class="tech__title">入力</h4><p class="tech__text">Google Docs<br>Google Drive</p></div>
+      <div class="tech__card"><div class="tech__icon">⚙️</div><h4 class="tech__title">処理</h4><p class="tech__text">Node.js / Sharp<br>Google APIs</p></div>
+      <div class="tech__card"><div class="tech__icon">🌐</div><h4 class="tech__title">出力</h4><p class="tech__text">WordPress PHP<br>Theme ZIP</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ CTA ============================================================ -->
+<section class="cta">
+  <h2 class="cta__title">クリニックサイト制作を、もっと速く。</h2>
+  <p class="cta__text">原稿と写真を入れるだけ。あとは自動。</p>
+  <div class="cta__links">
+    <a href="demo-complete/about.html" class="cta__link cta__link--w">完成デモを見る</a>
+    <a href="https://github.com/masaki-oishi/genova-clinic-template" class="cta__link cta__link--g" target="_blank">GitHub</a>
+  </div>
+</section>
+
+<footer class="footer">&copy; 2026 GENOVA XD Division — Clinic Template v1.0.0</footer>
+
+<script>
+const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add('vis'); }); }, { threshold: 0.08 });
+document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+</script>
 </body>
 </html>

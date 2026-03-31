@@ -13,21 +13,240 @@
   <link rel="stylesheet" href="../../assets/css/layout/footer.css">
   <link rel="stylesheet" href="../../assets/css/components/components.css">
   <link rel="stylesheet" href="../../assets/css/pages/about.css">
+  <style>
+    /* ── Header v2: 2段構成 (参考: minamiurawa-shika.com) ── */
+    .hd-v2 {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: box-shadow 0.4s var(--ease);
+    }
+    .hd-v2.scrolled { box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+    .hd-v2__top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px var(--section-px) 0;
+      max-width: var(--max-w-wide);
+      margin: 0 auto;
+    }
+    .hd-v2__logo {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 900;
+      letter-spacing: 0.04em;
+      color: var(--text);
+    }
+    .hd-v2__logo small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.6rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+    .hd-v2__right {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .hd-v2__hours {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-align: right;
+      line-height: 1.6;
+      border-right: 1px solid var(--border);
+      padding-right: 24px;
+    }
+    .hd-v2__tel {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hd-v2__tel svg { width: 16px; height: 16px; fill: var(--accent); }
+    .hd-v2__tel a {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--text);
+      letter-spacing: 0.03em;
+    }
+    .hd-v2__tel-sub {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+      display: block;
+    }
+    .hd-v2__cta {
+      padding: 10px 24px;
+      background: var(--accent);
+      color: #fff;
+      border-radius: var(--radius-sm);
+      font-size: 0.78rem;
+      font-weight: 700;
+      transition: background 0.3s, transform 0.3s;
+    }
+    .hd-v2__cta:hover { background: var(--accent-hover); transform: translateY(-1px); }
+    .hd-v2__nav {
+      display: flex;
+      justify-content: center;
+      gap: 0;
+      padding: 0 var(--section-px);
+      max-width: var(--max-w-wide);
+      margin: 12px auto 0;
+      border-top: 1px solid var(--border-light);
+    }
+    .hd-v2__nav a {
+      padding: 14px 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text-light);
+      transition: color 0.3s, background 0.3s;
+      position: relative;
+    }
+    .hd-v2__nav a:hover { color: var(--accent); background: var(--accent-light); }
+    .hd-v2__nav a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.3s var(--ease), left 0.3s var(--ease);
+    }
+    .hd-v2__nav a:hover::after { width: 100%; left: 0; }
+
+    /* ── Information B: 診療時間テーブル+MAP横並び (参考デザイン) ── */
+    .info-b { background: #f0ede8; }
+    .info-b__head {
+      margin-bottom: 8px;
+    }
+    .info-b__head-en {
+      font-family: 'Outfit';
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 300;
+      letter-spacing: 0.05em;
+      color: #8a7e6e;
+    }
+    .info-b__head-jp {
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-weight: 800;
+      color: var(--text);
+      margin-top: 4px;
+    }
+    .info-b__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      max-width: var(--content-w);
+      margin: 0 auto;
+    }
+    .info-b__left { padding-right: 40px; }
+    .info-b__right {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      min-height: 400px;
+    }
+    .info-b__right iframe { width: 100%; height: 100%; border: 0; }
+
+    /* Hours table B: ●▲ style */
+    .hours-b { width: 100%; border-collapse: collapse; margin: 24px 0 16px; }
+    .hours-b th, .hours-b td {
+      padding: 14px 8px;
+      text-align: center;
+      font-size: 0.85rem;
+      border-bottom: 1px solid #d8d2c8;
+    }
+    .hours-b th { font-weight: 600; color: var(--text); }
+    .hours-b td:first-child { text-align: left; font-weight: 600; white-space: nowrap; padding-left: 0; }
+    .hours-b thead th { color: #8a7e6e; font-weight: 500; font-size: 0.82rem; }
+    .hours-b .dot { color: #5a7a8a; font-size: 1.1rem; }
+    .hours-b .tri { color: #5a7a8a; font-size: 0.9rem; }
+    .hours-b .slash { color: #bbb; }
+    .hours-note-b {
+      font-size: 0.78rem;
+      color: #8a7e6e;
+      line-height: 1.8;
+      margin-bottom: 28px;
+    }
+
+    /* DL B: 医院情報 */
+    .dl-b { border-top: 1px solid #d8d2c8; }
+    .dl-b__row {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      padding: 14px 0;
+      border-bottom: 1px solid #d8d2c8;
+      font-size: 0.85rem;
+    }
+    .dl-b__dt { font-weight: 700; color: var(--text); }
+    .dl-b__dd { color: var(--text-light); line-height: 1.7; }
+
+    .design-label {
+      display: inline-block;
+      font-family: var(--font-display);
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: var(--radius-pill);
+      margin-bottom: 24px;
+    }
+    .design-label--a { background: var(--accent-light); color: var(--accent); }
+    .design-label--b { background: #e8e2d8; color: #8a7e6e; }
+
+    @media (max-width: 768px) {
+      .hd-v2__top { flex-wrap: wrap; gap: 12px; }
+      .hd-v2__hours { display: none; }
+      .hd-v2__nav { flex-wrap: wrap; justify-content: flex-start; }
+      .hd-v2__nav a { padding: 10px 14px; font-size: 0.72rem; }
+      .info-b__grid { grid-template-columns: 1fr; }
+      .info-b__left { padding-right: 0; }
+      .info-b__right { min-height: 280px; margin-top: 24px; }
+    }
+  </style>
 </head>
 <body>
 
-<header class="hd" id="hd">
-  <a href="index.html" class="hd-logo">さくら歯科</a>
-  <div class="hd-tel"><svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><div><a href="tel:0312345678">03-1234-5678</a><span class="hd-tel-sub">月〜土 9:00〜18:30</span></div></div>
-  <nav class="hd-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="#">アクセス</a><a href="#">料金表</a><a href="#" class="hd-cta">Web予約</a></nav>
-  <div class="burger" id="burger"><span></span><span></span><span></span></div>
+<!-- HEADER v2: 2段構成 -->
+<header class="hd-v2" id="hd">
+  <div class="hd-v2__top">
+    <a href="index.html" class="hd-v2__logo">
+      さくら歯科クリニック
+      <small>Sakura Dental Clinic</small>
+    </a>
+    <div class="hd-v2__right">
+      <div class="hd-v2__hours">
+        診療時間 9:00〜18:30<br>休診日 木曜・日曜・祝日
+      </div>
+      <div class="hd-v2__tel">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <div>
+          <a href="tel:0312345678">03-1234-5678</a>
+          <span class="hd-v2__tel-sub">お電話でのご予約・お問合せ</span>
+        </div>
+      </div>
+      <a href="#" class="hd-v2__cta">Web予約</a>
+    </div>
+    <div class="burger" id="burger" style="display:none;"><span></span><span></span><span></span></div>
+  </div>
+  <nav class="hd-v2__nav">
+    <a href="index.html">ホーム</a>
+    <a href="about.html">医院紹介</a>
+    <a href="treatment.html">診療案内</a>
+    <a href="staff.html">スタッフ</a>
+    <a href="#">アクセス</a>
+    <a href="#">料金表</a>
+    <a href="#">初めての方へ</a>
+  </nav>
 </header>
 <div class="mobile-nav" id="mobile-nav"><a href="about.html">医院紹介</a><a href="treatment.html">診療案内</a><a href="staff.html">スタッフ</a><a href="#">アクセス</a><a href="#">料金表</a><a href="#" class="btn btn--primary">Web予約</a><a href="tel:0312345678" class="btn btn--outline">電話する</a></div>
-<nav class="breadcrumb"><a href="index.html">Top</a> &mdash; <span>医院紹介</span></nav>
+<nav class="breadcrumb" style="padding-top:110px;"><a href="index.html">Top</a> &mdash; <span>医院紹介</span></nav>
 
 <!-- HERO -->
-<section class="pg-hero">
-  <div class="inner rv">
+<section class="pg-hero" style="padding-top:20px;">
+  <div class="inner rv" style="padding-top:120px;">
     <h1 class="pg-hero__title"><small>About Us</small>医院紹介</h1>
     <p class="pg-hero__lead">「来てよかった」と思える場所へ。<br>さくら歯科クリニックは、対話を大切にした歯科医療をお届けします。</p>
   </div>
@@ -156,9 +375,10 @@
   </div>
 </section>
 
-<!-- 08. INFO -->
+<!-- 08. INFO — Design A (現行デザイン) -->
 <section class="sec sec--sub">
   <div class="container">
+    <div class="rv" style="text-align:center;"><span class="design-label design-label--a">Design A — 現行</span></div>
     <div class="sec-head rv"><p class="sec-head__label">Information</p><h2 class="sec-head__title">医院情報</h2></div>
     <dl class="dl-table rv">
       <div class="dl-row"><dt>医院名</dt><dd>さくら歯科クリニック</dd></div>
@@ -179,6 +399,49 @@
     <div class="about-map rv">
       <div style="border-radius:var(--radius-md);overflow:hidden;aspect-ratio:16/9;">
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.169!2d139.7025!3d35.6697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQwJzExLjAiTiAxMznCsDQyJzA5LjAiRQ!5e0!3m2!1sja!2sjp!4v1600000000000" width="100%" height="100%" style="border:0;" allowfullscreen loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10. INFO + ACCESS — Design B (参考: minamiurawa-shika.com 風) -->
+<section class="sec info-b">
+  <div class="container">
+    <div class="rv" style="text-align:center;"><span class="design-label design-label--b">Design B — 別案</span></div>
+    <div class="info-b__head rv">
+      <p class="info-b__head-en">INFORMATION</p>
+      <h2 class="info-b__head-jp">アクセス・診療時間</h2>
+    </div>
+    <div class="info-b__grid rv">
+      <div class="info-b__left">
+        <table class="hours-b">
+          <thead>
+            <tr><th>診療時間</th><th>月</th><th>火</th><th>水</th><th>木</th><th>金</th><th>土</th><th>日</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>9:00〜12:30</td>
+              <td class="dot">●</td><td class="dot">●</td><td class="dot">●</td><td class="slash">／</td><td class="dot">●</td><td class="dot">●</td><td class="slash">／</td>
+            </tr>
+            <tr>
+              <td>14:00〜18:30</td>
+              <td class="dot">●</td><td class="dot">●</td><td class="dot">●</td><td class="slash">／</td><td class="dot">●</td><td class="tri">▲</td><td class="slash">／</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="hours-note-b">▲ 土曜午後 14:00〜17:00<br>休診日：木曜・日曜・祝日</p>
+
+        <div class="dl-b">
+          <div class="dl-b__row"><div class="dl-b__dt">医院名</div><div class="dl-b__dd">さくら歯科クリニック</div></div>
+          <div class="dl-b__row"><div class="dl-b__dt">診療科目</div><div class="dl-b__dd">一般歯科・矯正歯科・小児歯科・インプラント・予防歯科・審美歯科</div></div>
+          <div class="dl-b__row"><div class="dl-b__dt">所在地</div><div class="dl-b__dd">〒150-0001 東京都渋谷区神宮前1-2-3 さくらビル2F</div></div>
+          <div class="dl-b__row"><div class="dl-b__dt">電話番号</div><div class="dl-b__dd"><a href="tel:0312345678" style="color:var(--text);font-weight:600;">03-1234-5678</a></div></div>
+          <div class="dl-b__row"><div class="dl-b__dt">アクセス</div><div class="dl-b__dd">JR山手線「原宿駅」竹下口 徒歩3分<br>東京メトロ「明治神宮前駅」5番出口 徒歩2分</div></div>
+          <div class="dl-b__row"><div class="dl-b__dt">駐車場</div><div class="dl-b__dd">提携駐車場あり（1時間無料）</div></div>
+        </div>
+      </div>
+      <div class="info-b__right">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.169!2d139.7025!3d35.6697!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQwJzExLjAiTiAxMznCsDQyJzA5LjAiRQ!5e0!3m2!1sja!2sjp!4v1600000000000" allowfullscreen loading="lazy"></iframe>
       </div>
     </div>
   </div>
